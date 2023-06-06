@@ -5,7 +5,7 @@
 <a href="https://github.com/FlowiseAI/Flowise">
 <img width="100%" src="https://github.com/FlowiseAI/Flowise/blob/main/images/flowise.gif?raw=true"></a>
 
-利用 [LangchainJS](https://github.com/hwchase17/langchainjs) 和 拖拽构建你自定义的 LLM
+利用 [LangchainJS](https://github.com/hwchase17/langchainjs) 拖拽出你自己的 LLM
 
 ## ⚡ 快速开始
 
