@@ -76,10 +76,10 @@ export const ChatPopUp = ({ chatflowid }) => {
 
     const clearChat = async () => {
         const confirmPayload = {
-            title: `Clear Chat History`,
-            description: `Are you sure you want to clear all chat history?`,
-            confirmButtonName: 'Clear',
-            cancelButtonName: 'Cancel'
+            title: `清除聊天记录`,
+            description: `您确定要清除所有聊天记录吗？`,
+            confirmButtonName: '清除',
+            cancelButtonName: '取消'
         }
         const isConfirmed = await confirm(confirmPayload)
 
@@ -88,7 +88,7 @@ export const ChatPopUp = ({ chatflowid }) => {
                 await chatmessageApi.deleteChatmessage(chatflowid)
                 resetChatDialog()
                 enqueueSnackbar({
-                    message: 'Succesfully cleared all chat history',
+                    message: '已成功清除所有聊天记录',
                     options: {
                         key: new Date().getTime() + Math.random(),
                         variant: 'success',

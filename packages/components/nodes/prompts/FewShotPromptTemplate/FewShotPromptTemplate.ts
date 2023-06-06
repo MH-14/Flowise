@@ -15,12 +15,12 @@ class FewShotPromptTemplate_Prompts implements INode {
     inputs: INodeParams[]
 
     constructor() {
-        this.label = 'Few Shot Prompt Template'
+        this.label = '少样本提示模板'
         this.name = 'fewShotPromptTemplate'
         this.type = 'FewShotPromptTemplate'
         this.icon = 'prompt.svg'
         this.category = 'Prompts'
-        this.description = 'Prompt template you can build with examples'
+        this.description = '你可以根据示例构建提示模板'
         this.baseClasses = [this.type, ...getBaseClasses(FewShotPromptTemplate)]
         this.inputs = [
             {
@@ -29,37 +29,37 @@ class FewShotPromptTemplate_Prompts implements INode {
                 type: 'string',
                 rows: 4,
                 placeholder: `[
-  { "word": "happy", "antonym": "sad" },
-  { "word": "tall", "antonym": "short" },
-]`
+                    { "词语": "开心", "反义词": "难过" },
+                    { "词语": "高", "反义词": "矮" },
+                ]`
             },
             {
-                label: 'Example Prompt',
+                label: '提示词示例',
                 name: 'examplePrompt',
                 type: 'PromptTemplate'
             },
             {
-                label: 'Prefix',
+                label: '前缀',
                 name: 'prefix',
                 type: 'string',
                 rows: 4,
-                placeholder: `Give the antonym of every input`
+                placeholder: `为每一个输入给出反义词`
             },
             {
-                label: 'Suffix',
+                label: '后缀',
                 name: 'suffix',
                 type: 'string',
                 rows: 4,
-                placeholder: `Word: {input}\nAntonym:`
+                placeholder: `词语: {input}\n反义词:`
             },
             {
-                label: 'Example Seperator',
+                label: '分隔符示例',
                 name: 'exampleSeparator',
                 type: 'string',
                 placeholder: `\n\n`
             },
             {
-                label: 'Template Format',
+                label: '格式化模板',
                 name: 'templateFormat',
                 type: 'options',
                 options: [

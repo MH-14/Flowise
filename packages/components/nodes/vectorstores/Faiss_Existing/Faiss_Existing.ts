@@ -15,35 +15,35 @@ class Faiss_Existing_VectorStores implements INode {
     outputs: INodeOutputsValue[]
 
     constructor() {
-        this.label = 'Faiss Load Existing Index'
+        this.label = '加载存在的 Faiss 索引'
         this.name = 'faissExistingIndex'
         this.type = 'Faiss'
         this.icon = 'faiss.svg'
         this.category = 'Vector Stores'
-        this.description = 'Load existing index from Faiss (i.e: Document has been upserted)'
+        this.description = '从 Faiss 中加载现有的索引 (即: 文档已被插入或更新)'
         this.baseClasses = [this.type, 'VectorStoreRetriever', 'BaseRetriever']
         this.inputs = [
             {
-                label: 'Embeddings',
+                label: '嵌入向量',
                 name: 'embeddings',
                 type: 'Embeddings'
             },
             {
-                label: 'Base Path to load',
+                label: '用于加载的 Base Path',
                 name: 'basePath',
-                description: 'Path to load faiss.index file',
+                description: '用于加载 faiss.index 文件的路径',
                 placeholder: `C:\\Users\\User\\Desktop`,
                 type: 'string'
             }
         ]
         this.outputs = [
             {
-                label: 'Faiss Retriever',
+                label: 'Faiss 检索器',
                 name: 'retriever',
                 baseClasses: this.baseClasses
             },
             {
-                label: 'Faiss Vector Store',
+                label: 'Faiss 向量存储',
                 name: 'vectorStore',
                 baseClasses: [this.type, ...getBaseClasses(FaissStore)]
             }

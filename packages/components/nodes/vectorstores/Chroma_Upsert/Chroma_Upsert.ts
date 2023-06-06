@@ -16,32 +16,32 @@ class ChromaUpsert_VectorStores implements INode {
     outputs: INodeOutputsValue[]
 
     constructor() {
-        this.label = 'Chroma Upsert Document'
+        this.label = '插入或更新 Chroma 文档'
         this.name = 'chromaUpsert'
         this.type = 'Chroma'
         this.icon = 'chroma.svg'
         this.category = 'Vector Stores'
-        this.description = 'Upsert documents to Chroma'
+        this.description = '将文档插入或更新到 Chroma 中'
         this.baseClasses = [this.type, 'VectorStoreRetriever', 'BaseRetriever']
         this.inputs = [
             {
-                label: 'Document',
+                label: '文档',
                 name: 'document',
                 type: 'Document',
                 list: true
             },
             {
-                label: 'Embeddings',
+                label: '嵌入向量',
                 name: 'embeddings',
                 type: 'Embeddings'
             },
             {
-                label: 'Collection Name',
+                label: 'Collection 名称',
                 name: 'collectionName',
                 type: 'string'
             },
             {
-                label: 'Chroma URL',
+                label: 'Chroma 链接',
                 name: 'chromaURL',
                 type: 'string',
                 optional: true
@@ -49,12 +49,12 @@ class ChromaUpsert_VectorStores implements INode {
         ]
         this.outputs = [
             {
-                label: 'Chroma Retriever',
+                label: 'Chroma 检索器',
                 name: 'retriever',
                 baseClasses: this.baseClasses
             },
             {
-                label: 'Chroma Vector Store',
+                label: 'Chroma 向量存储',
                 name: 'vectorStore',
                 baseClasses: [this.type, ...getBaseClasses(Chroma)]
             }

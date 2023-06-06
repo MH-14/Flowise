@@ -153,10 +153,10 @@ const Canvas = () => {
 
     const handleDeleteFlow = async () => {
         const confirmPayload = {
-            title: `Delete`,
-            description: `Delete chatflow ${chatflow.name}?`,
+            title: `删除`,
+            description: `是否要删除名为 ${chatflow.name} 的 ChatFlow?`,
             confirmButtonName: 'Delete',
-            cancelButtonName: 'Cancel'
+            cancelButtonName: '取消'
         }
         const isConfirmed = await confirm(confirmPayload)
 
@@ -462,7 +462,7 @@ const Canvas = () => {
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [templateFlowData])
 
-    usePrompt('You have unsaved changes! Do you want to navigate away?', canvasDataStore.isDirty)
+    usePrompt('您有未保存的更改！您确定要离开吗？', canvasDataStore.isDirty)
 
     return (
         <>

@@ -20,16 +20,16 @@ class VectorDBQAChain_Chains implements INode {
         this.type = 'VectorDBQAChain'
         this.icon = 'chain.svg'
         this.category = 'Chains'
-        this.description = 'QA chain for vector databases'
+        this.description = '向量数据库的问答链'
         this.baseClasses = [this.type, ...getBaseClasses(VectorDBQAChain)]
         this.inputs = [
             {
-                label: 'Language Model',
+                label: '语言模型',
                 name: 'model',
                 type: 'BaseLanguageModel'
             },
             {
-                label: 'Vector Store',
+                label: '向量存储',
                 name: 'vectorStore',
                 type: 'VectorStore'
             }

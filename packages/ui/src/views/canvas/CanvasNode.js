@@ -43,8 +43,8 @@ const CanvasNode = ({ data }) => {
         const dialogProps = {
             data,
             inputParams: data.inputParams.filter((param) => param.additionalParams),
-            confirmButtonName: 'Save',
-            cancelButtonName: 'Cancel'
+            confirmButtonName: '保存',
+            cancelButtonName: '取消'
         }
         setDialogProps(dialogProps)
         setShowDialog(true)
@@ -91,7 +91,7 @@ const CanvasNode = ({ data }) => {
                         </Box>
                         <div style={{ flexGrow: 1 }}></div>
                         <IconButton
-                            title='Duplicate'
+                            title='复制'
                             onClick={() => {
                                 duplicateNode(data.id)
                             }}
@@ -101,7 +101,7 @@ const CanvasNode = ({ data }) => {
                             <IconCopy />
                         </IconButton>
                         <IconButton
-                            title='Delete'
+                            title='删除'
                             onClick={() => {
                                 deleteNode(data.id)
                             }}
@@ -121,7 +121,7 @@ const CanvasNode = ({ data }) => {
                                         textAlign: 'center'
                                     }}
                                 >
-                                    Inputs
+                                    输入
                                 </Typography>
                             </Box>
                             <Divider />
@@ -145,7 +145,7 @@ const CanvasNode = ({ data }) => {
                             }}
                         >
                             <Button sx={{ borderRadius: 25, width: '90%', mb: 2 }} variant='outlined' onClick={onDialogClicked}>
-                                Additional Parameters
+                                附加参数
                             </Button>
                         </div>
                     )}
@@ -157,7 +157,7 @@ const CanvasNode = ({ data }) => {
                                 textAlign: 'center'
                             }}
                         >
-                            Output
+                            输出
                         </Typography>
                     </Box>
                     <Divider />

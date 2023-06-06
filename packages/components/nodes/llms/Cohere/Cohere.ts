@@ -18,16 +18,16 @@ class Cohere_LLMs implements INode {
         this.type = 'Cohere'
         this.icon = 'cohere.png'
         this.category = 'LLMs'
-        this.description = 'Wrapper around Cohere large language models'
+        this.description = '一个 Cohere 大规模语言模型的封装'
         this.baseClasses = [this.type, ...getBaseClasses(Cohere)]
         this.inputs = [
             {
-                label: 'Cohere Api Key',
+                label: 'Cohere Api 密钥',
                 name: 'cohereApiKey',
                 type: 'password'
             },
             {
-                label: 'Model Name',
+                label: '模型',
                 name: 'modelName',
                 type: 'options',
                 options: [

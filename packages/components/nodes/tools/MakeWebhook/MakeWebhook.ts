@@ -18,20 +18,20 @@ class MakeWebhook_Tools implements INode {
         this.type = 'MakeWebhook'
         this.icon = 'make.png'
         this.category = 'Tools'
-        this.description = 'Execute webhook calls on Make.com'
+        this.description = '在 Make.com 执行 webhook'
         this.inputs = [
             {
-                label: 'Webhook Url',
+                label: 'Webhook 链接',
                 name: 'url',
                 type: 'string',
                 placeholder: 'https://hook.eu1.make.com/abcdefg'
             },
             {
-                label: 'Tool Description',
+                label: '工具 描述',
                 name: 'desc',
                 type: 'string',
                 rows: 4,
-                placeholder: 'Useful when need to send message to Discord'
+                placeholder: '在你想要向 Discord 发送消息时非常有用'
             }
         ]
         this.baseClasses = [this.type, ...getBaseClasses(MakeWebhookTool)]

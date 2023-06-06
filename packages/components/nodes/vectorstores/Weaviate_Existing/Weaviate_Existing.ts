@@ -16,16 +16,16 @@ class Weaviate_Existing_VectorStores implements INode {
     outputs: INodeOutputsValue[]
 
     constructor() {
-        this.label = 'Weaviate Load Existing Index'
+        this.label = '加载存在的 Weaviate 索引'
         this.name = 'weaviateExistingIndex'
         this.type = 'Weaviate'
         this.icon = 'weaviate.png'
         this.category = 'Vector Stores'
-        this.description = 'Load existing index from Weaviate (i.e: Document has been upserted)'
+        this.description = '从 Weaviate 中加载现有的索引 (即: 文档已被插入或更新)'
         this.baseClasses = [this.type, 'VectorStoreRetriever', 'BaseRetriever']
         this.inputs = [
             {
-                label: 'Embeddings',
+                label: '嵌入向量',
                 name: 'embeddings',
                 type: 'Embeddings'
             },
@@ -46,7 +46,7 @@ class Weaviate_Existing_VectorStores implements INode {
                 ]
             },
             {
-                label: 'Weaviate Host',
+                label: 'Weaviate 端口',
                 name: 'weaviateHost',
                 type: 'string',
                 placeholder: 'localhost:8080'
@@ -58,13 +58,13 @@ class Weaviate_Existing_VectorStores implements INode {
                 placeholder: 'Test'
             },
             {
-                label: 'Weaviate API Key',
+                label: 'Weaviate API 密钥',
                 name: 'weaviateApiKey',
                 type: 'password',
                 optional: true
             },
             {
-                label: 'Weaviate Text Key',
+                label: 'Weaviate Text 密钥',
                 name: 'weaviateTextKey',
                 type: 'string',
                 placeholder: 'text',
@@ -72,7 +72,7 @@ class Weaviate_Existing_VectorStores implements INode {
                 additionalParams: true
             },
             {
-                label: 'Weaviate Metadata Keys',
+                label: 'Weaviate Metadata 密钥',
                 name: 'weaviateMetadataKeys',
                 type: 'string',
                 rows: 4,
@@ -83,12 +83,12 @@ class Weaviate_Existing_VectorStores implements INode {
         ]
         this.outputs = [
             {
-                label: 'Weaviate Retriever',
+                label: 'Weaviate 检索器',
                 name: 'retriever',
                 baseClasses: this.baseClasses
             },
             {
-                label: 'Weaviate Vector Store',
+                label: 'Weaviate 向量存储',
                 name: 'vectorStore',
                 baseClasses: [this.type, ...getBaseClasses(WeaviateStore)]
             }

@@ -18,16 +18,16 @@ class OpenAIEmbedding_Embeddings implements INode {
         this.type = 'OpenAIEmbeddings'
         this.icon = 'openai.png'
         this.category = 'Embeddings'
-        this.description = 'OpenAI API to generate embeddings for a given text'
+        this.description = '使用 OpenAI API 为给定的文本生成嵌入'
         this.baseClasses = [this.type, ...getBaseClasses(OpenAIEmbeddings)]
         this.inputs = [
             {
-                label: 'OpenAI Api Key',
+                label: 'OpenAI Api 密钥',
                 name: 'openAIApiKey',
                 type: 'password'
             },
             {
-                label: 'Strip New Lines',
+                label: '去除换行符',
                 name: 'stripNewLines',
                 type: 'boolean',
                 optional: true,
@@ -41,7 +41,7 @@ class OpenAIEmbedding_Embeddings implements INode {
                 additionalParams: true
             },
             {
-                label: 'Timeout',
+                label: '超时时间',
                 name: 'timeout',
                 type: 'number',
                 optional: true,

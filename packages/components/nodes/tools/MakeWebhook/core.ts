@@ -17,7 +17,7 @@ export class MakeWebhookTool extends Tool {
         super()
         this.url = url
         this.name = 'make_webhook'
-        this.description = description ?? `useful for when you need to execute tasks on Make`
+        this.description = description ?? `在您需要在Make上执行任务时非常有用`
         this.method = method
         this.headers = headers
     }

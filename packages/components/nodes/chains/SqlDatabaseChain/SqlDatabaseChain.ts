@@ -21,16 +21,16 @@ class SqlDatabaseChain_Chains implements INode {
         this.type = 'SqlDatabaseChain'
         this.icon = 'sqlchain.svg'
         this.category = 'Chains'
-        this.description = 'Answer questions over a SQL database'
+        this.description = '回答关于SQL数据库的问题'
         this.baseClasses = [this.type, ...getBaseClasses(SqlDatabaseChain)]
         this.inputs = [
             {
-                label: 'Language Model',
+                label: '语言模型',
                 name: 'model',
                 type: 'BaseLanguageModel'
             },
             {
-                label: 'Database',
+                label: '数据库',
                 name: 'database',
                 type: 'options',
                 options: [
@@ -42,7 +42,7 @@ class SqlDatabaseChain_Chains implements INode {
                 default: 'sqlite'
             },
             {
-                label: 'Database File Path',
+                label: '数据库文件路径',
                 name: 'dbFilePath',
                 type: 'string',
                 placeholder: 'C:/Users/chinook.db'

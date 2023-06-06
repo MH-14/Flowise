@@ -13,12 +13,12 @@ class PromptTemplate_Prompts implements INode {
     inputs: INodeParams[]
 
     constructor() {
-        this.label = 'Prompt Template'
+        this.label = '提示模板'
         this.name = 'promptTemplate'
         this.type = 'PromptTemplate'
         this.icon = 'prompt.svg'
         this.category = 'Prompts'
-        this.description = 'Schema to represent a basic prompt for an LLM'
+        this.description = '用于规范 LLM 基本提示的模式'
         this.baseClasses = [...getBaseClasses(PromptTemplate)]
         this.inputs = [
             {
@@ -26,17 +26,16 @@ class PromptTemplate_Prompts implements INode {
                 name: 'template',
                 type: 'string',
                 rows: 4,
-                placeholder: `What is a good name for a company that makes {product}?`
+                placeholder: `你能给生产 {product} 的公司起一个好名字吗?`
             },
             {
-                label: 'Format Prompt Values',
+                label: '用于格式化 Prompt(提示) 的值',
                 name: 'promptValues',
                 type: 'string',
                 rows: 4,
                 placeholder: `{
-  "input_language": "English",
-  "output_language": "French"
-}`,
+                    "product": "香蕉",
+                }`,
                 optional: true,
                 acceptVariable: true,
                 list: true

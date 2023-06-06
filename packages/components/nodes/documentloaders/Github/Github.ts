@@ -18,30 +18,30 @@ class Github_DocumentLoaders implements INode {
         this.type = 'Document'
         this.icon = 'github.png'
         this.category = 'Document Loaders'
-        this.description = `Load data from a GitHub repository`
+        this.description = `从 GitHub 仓库加载数据`
         this.baseClasses = [this.type]
         this.inputs = [
             {
-                label: 'Repo Link',
+                label: '仓库链接',
                 name: 'repoLink',
                 type: 'string',
                 placeholder: 'https://github.com/FlowiseAI/Flowise'
             },
             {
-                label: 'Branch',
+                label: '分支',
                 name: 'branch',
                 type: 'string',
                 default: 'main'
             },
             {
-                label: 'Access Token',
+                label: '访问令牌',
                 name: 'accessToken',
                 type: 'password',
                 placeholder: '<GITHUB_ACCESS_TOKEN>',
                 optional: true
             },
             {
-                label: 'Text Splitter',
+                label: '文本分割器',
                 name: 'textSplitter',
                 type: 'TextSplitter',
                 optional: true

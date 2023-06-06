@@ -6,7 +6,7 @@ import { BufferMemory, ChatMessageHistory } from 'langchain/memory'
 import { BaseChatModel } from 'langchain/chat_models/base'
 import { AIChatMessage, HumanChatMessage } from 'langchain/schema'
 
-const systemMessage = `The following is a friendly conversation between a human and an AI. The AI is talkative and provides lots of specific details from its context. If the AI does not know the answer to a question, it truthfully says it does not know.`
+const systemMessage = `以下是一段友好的对话, 其中一方是人类, 另一方是AI. 这个AI非常健谈, 会提供很多具体的细节信息. 如果AI不知道某个问题的答案, 它会诚实地说出自己不知道.`
 
 class ConversationChain_Chains implements INode {
     label: string
@@ -24,27 +24,27 @@ class ConversationChain_Chains implements INode {
         this.type = 'ConversationChain'
         this.icon = 'chain.svg'
         this.category = 'Chains'
-        this.description = 'Chat models specific conversational chain with memory'
+        this.description = '具有记忆功能的聊天模型, 可以指定特定的对话Chain'
         this.baseClasses = [this.type, ...getBaseClasses(ConversationChain)]
         this.inputs = [
             {
-                label: 'Language Model',
+                label: '语言模型',
                 name: 'model',
                 type: 'BaseChatModel'
             },
             {
-                label: 'Memory',
+                label: '记忆',
                 name: 'memory',
                 type: 'BaseMemory'
             },
             {
-                label: 'System Message',
+                label: '系统消息',
                 name: 'systemMessagePrompt',
                 type: 'string',
                 rows: 4,
                 additionalParams: true,
                 optional: true,
-                placeholder: 'You are a helpful assistant that write codes'
+                placeholder: '你是一个能够编写代码的有用的助手.'
             }
         ]
     }

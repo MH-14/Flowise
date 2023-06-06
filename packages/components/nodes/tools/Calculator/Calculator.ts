@@ -12,12 +12,12 @@ class Calculator_Tools implements INode {
     baseClasses: string[]
 
     constructor() {
-        this.label = 'Calculator'
+        this.label = '计算器'
         this.name = 'calculator'
         this.type = 'Calculator'
         this.icon = 'calculator.svg'
         this.category = 'Tools'
-        this.description = 'Perform calculations on response'
+        this.description = '对响应进行计算'
         this.baseClasses = [this.type, ...getBaseClasses(Calculator)]
     }
 

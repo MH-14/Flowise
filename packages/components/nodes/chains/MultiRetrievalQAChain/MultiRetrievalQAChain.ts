@@ -19,16 +19,16 @@ class MultiRetrievalQAChain_Chains implements INode {
         this.type = 'MultiRetrievalQAChain'
         this.icon = 'chain.svg'
         this.category = 'Chains'
-        this.description = 'QA Chain that automatically picks an appropriate vector store from multiple retrievers'
+        this.description = 'QA Chain会自动从多个检索器中选择合适的向量存储'
         this.baseClasses = [this.type, ...getBaseClasses(MultiRetrievalQAChain)]
         this.inputs = [
             {
-                label: 'Language Model',
+                label: '语言模型',
                 name: 'model',
                 type: 'BaseLanguageModel'
             },
             {
-                label: 'Vector Store Retriever',
+                label: '向量存储检索器',
                 name: 'vectorStoreRetriever',
                 type: 'VectorStoreRetriever',
                 list: true

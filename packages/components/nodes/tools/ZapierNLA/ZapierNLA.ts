@@ -18,10 +18,10 @@ class ZapierNLA_Tools implements INode {
         this.type = 'ZapierNLA'
         this.icon = 'zapier.png'
         this.category = 'Tools'
-        this.description = "Access to apps and actions on Zapier's platform through a natural language API interface"
+        this.description = '通过自然语言API接口, 可以访问Zapier平台上的应用程序和操作'
         this.inputs = [
             {
-                label: 'Zapier NLA Api Key',
+                label: 'Zapier NLA Api 密钥',
                 name: 'apiKey',
                 type: 'password'
             }

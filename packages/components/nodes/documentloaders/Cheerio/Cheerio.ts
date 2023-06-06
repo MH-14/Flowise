@@ -20,7 +20,7 @@ class Cheerio_DocumentLoaders implements INode {
         this.type = 'Document'
         this.icon = 'cheerio.svg'
         this.category = 'Document Loaders'
-        this.description = `Load data from webpages`
+        this.description = `从网页加载数据`
         this.baseClasses = [this.type]
         this.inputs = [
             {
@@ -29,7 +29,7 @@ class Cheerio_DocumentLoaders implements INode {
                 type: 'string'
             },
             {
-                label: 'Text Splitter',
+                label: '文本分割器',
                 name: 'textSplitter',
                 type: 'TextSplitter',
                 optional: true
@@ -68,7 +68,7 @@ class Cheerio_DocumentLoaders implements INode {
         let url = nodeData.inputs?.url as string
         url = url.trim()
         if (!test(url)) {
-            throw new Error('Invalid URL')
+            throw new Error('无效的 URL')
         }
 
         const cheerioLoader = async (url: string): Promise<any> => {

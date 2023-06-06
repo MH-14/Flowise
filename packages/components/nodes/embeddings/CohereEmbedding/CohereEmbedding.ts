@@ -18,16 +18,16 @@ class CohereEmbedding_Embeddings implements INode {
         this.type = 'CohereEmbeddings'
         this.icon = 'cohere.png'
         this.category = 'Embeddings'
-        this.description = 'Cohere API to generate embeddings for a given text'
+        this.description = '使用 Cohere API 为给定的文本生成嵌入'
         this.baseClasses = [this.type, ...getBaseClasses(CohereEmbeddings)]
         this.inputs = [
             {
-                label: 'Cohere API Key',
+                label: 'Cohere API 密钥',
                 name: 'cohereApiKey',
                 type: 'password'
             },
             {
-                label: 'Model Name',
+                label: '模型名称',
                 name: 'modelName',
                 type: 'options',
                 options: [

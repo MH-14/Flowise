@@ -18,16 +18,16 @@ class OpenAI_LLMs implements INode {
         this.type = 'OpenAI'
         this.icon = 'openai.png'
         this.category = 'LLMs'
-        this.description = 'Wrapper around OpenAI large language models'
+        this.description = '一个 OpenAI 大规模语言模型的封装'
         this.baseClasses = [this.type, ...getBaseClasses(OpenAI)]
         this.inputs = [
             {
-                label: 'OpenAI Api Key',
+                label: 'OpenAI Api 密钥',
                 name: 'openAIApiKey',
                 type: 'password'
             },
             {
-                label: 'Model Name',
+                label: '模型',
                 name: 'modelName',
                 type: 'options',
                 options: [
@@ -101,7 +101,7 @@ class OpenAI_LLMs implements INode {
                 additionalParams: true
             },
             {
-                label: 'Timeout',
+                label: '超时时间',
                 name: 'timeout',
                 type: 'number',
                 optional: true,

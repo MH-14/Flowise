@@ -16,36 +16,36 @@ class Supabase_Existing_VectorStores implements INode {
     outputs: INodeOutputsValue[]
 
     constructor() {
-        this.label = 'Supabase Load Existing Index'
+        this.label = '加载存在的 Supabase 索引'
         this.name = 'supabaseExistingIndex'
         this.type = 'Supabase'
         this.icon = 'supabase.svg'
         this.category = 'Vector Stores'
-        this.description = 'Load existing index from Supabase (i.e: Document has been upserted)'
+        this.description = '从 Supabase 中加载现有的索引 (即: 文档已被插入或更新)'
         this.baseClasses = [this.type, 'VectorStoreRetriever', 'BaseRetriever']
         this.inputs = [
             {
-                label: 'Embeddings',
+                label: '嵌入向量',
                 name: 'embeddings',
                 type: 'Embeddings'
             },
             {
-                label: 'Supabase API Key',
+                label: 'Supabase API 密钥',
                 name: 'supabaseApiKey',
                 type: 'password'
             },
             {
-                label: 'Supabase Project URL',
+                label: 'Supabase Project 链接',
                 name: 'supabaseProjUrl',
                 type: 'string'
             },
             {
-                label: 'Table Name',
+                label: 'Table 名称',
                 name: 'tableName',
                 type: 'string'
             },
             {
-                label: 'Query Name',
+                label: 'Query 名称',
                 name: 'queryName',
                 type: 'string'
             },
@@ -59,12 +59,12 @@ class Supabase_Existing_VectorStores implements INode {
         ]
         this.outputs = [
             {
-                label: 'Supabase Retriever',
+                label: 'Supabase 检索器',
                 name: 'retriever',
                 baseClasses: this.baseClasses
             },
             {
-                label: 'Supabase Vector Store',
+                label: 'Supabase 向量存储',
                 name: 'vectorStore',
                 baseClasses: [this.type, ...getBaseClasses(SupabaseVectorStore)]
             }

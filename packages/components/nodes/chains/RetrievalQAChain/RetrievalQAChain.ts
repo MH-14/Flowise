@@ -20,16 +20,16 @@ class RetrievalQAChain_Chains implements INode {
         this.type = 'RetrievalQAChain'
         this.icon = 'chain.svg'
         this.category = 'Chains'
-        this.description = 'QA chain to answer a question based on the retrieved documents'
+        this.description = 'QA Chain根据检索到的文档回答问题'
         this.baseClasses = [this.type, ...getBaseClasses(RetrievalQAChain)]
         this.inputs = [
             {
-                label: 'Language Model',
+                label: '语言模型',
                 name: 'model',
                 type: 'BaseLanguageModel'
             },
             {
-                label: 'Vector Store Retriever',
+                label: '向量存储检索器',
                 name: 'vectorStoreRetriever',
                 type: 'BaseRetriever'
             }

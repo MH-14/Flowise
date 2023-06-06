@@ -18,23 +18,23 @@ class Confluence_DocumentLoaders implements INode {
         this.type = 'Document'
         this.icon = 'confluence.png'
         this.category = 'Document Loaders'
-        this.description = `Load data from a Confluence Document`
+        this.description = `从 Confluence 文档加载数据`
         this.baseClasses = [this.type]
         this.inputs = [
             {
-                label: 'Text Splitter',
+                label: '文本分割器',
                 name: 'textSplitter',
                 type: 'TextSplitter',
                 optional: true
             },
             {
-                label: 'Username',
+                label: '用户名',
                 name: 'username',
                 type: 'string',
                 placeholder: '<CONFLUENCE_USERNAME>'
             },
             {
-                label: 'Access Token',
+                label: '访问令牌',
                 name: 'accessToken',
                 type: 'password',
                 placeholder: '<CONFLUENCE_ACCESS_TOKEN>'

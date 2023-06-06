@@ -37,7 +37,7 @@ export const ChatMessage = ({ open, chatflowid, isDialog }) => {
     const [loading, setLoading] = useState(false)
     const [messages, setMessages] = useState([
         {
-            message: 'Hi there! How can I help?',
+            message: '你好！有什么需要帮忙的吗？',
             type: 'apiMessage'
         }
     ])
@@ -79,7 +79,7 @@ export const ChatMessage = ({ open, chatflowid, isDialog }) => {
     }
 
     // Handle errors
-    const handleError = (message = 'Oops! There seems to be an error. Please try again.') => {
+    const handleError = (message = '哎呀！似乎出现了一个错误。请再试一次。') => {
         message = message.replace(`Unable to parse JSON response from chat agent.\n\n`, '')
         setMessages((prevMessages) => [...prevMessages, { message, type: 'apiMessage' }])
         addChatMessage(message, 'apiMessage')
@@ -106,7 +106,7 @@ export const ChatMessage = ({ open, chatflowid, isDialog }) => {
         try {
             const params = {
                 question: userInput,
-                history: messages.filter((msg) => msg.message !== 'Hi there! How can I help?')
+                history: messages.filter((msg) => msg.message !== '你好！有什么需要帮忙的吗？')
             }
             if (isChatFlowAvailableToStream) params.socketIOClientId = socketIOClientId
 
@@ -204,7 +204,7 @@ export const ChatMessage = ({ open, chatflowid, isDialog }) => {
             setLoading(false)
             setMessages([
                 {
-                    message: 'Hi there! How can I help?',
+                    message: '你好！有什么需要帮忙的吗？',
                     type: 'apiMessage'
                 }
             ])
@@ -305,7 +305,7 @@ export const ChatMessage = ({ open, chatflowid, isDialog }) => {
                             onKeyDown={handleEnter}
                             id='userInput'
                             name='userInput'
-                            placeholder={loading ? 'Waiting for response...' : 'Type your question...'}
+                            placeholder={loading ? '等待回复中...' : '请输入您的问题...'}
                             value={userInput}
                             onChange={onChange}
                             endAdornment={

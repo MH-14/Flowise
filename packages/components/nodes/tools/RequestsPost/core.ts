@@ -1,12 +1,10 @@
 import { Tool } from 'langchain/tools'
 import fetch from 'node-fetch'
 
-export const desc = `Use this when you want to POST to a website.
-Input should be a json string with two keys: "url" and "data".
-The value of "url" should be a string, and the value of "data" should be a dictionary of 
-key-value pairs you want to POST to the url as a JSON body.
-Be careful to always use double quotes for strings in the json string
-The output will be the text response of the POST request.`
+export const desc = `当您想要向网站发送POST请求时, 请使用此功能.
+输入应该是一个JSON字符串, 其中包含两个键："url"和"data".
+"url"的值应该是一个字符串, "data"的值应该是一个字典, 其中包含您想要作为JSON主体发送POST请求到URL的键值对.
+请注意, 在JSON字符串中始终使用双引号来表示字符串. 输出将是POST请求的文本响应.`
 
 export interface Headers {
     [key: string]: string

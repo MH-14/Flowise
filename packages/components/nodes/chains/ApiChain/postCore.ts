@@ -5,26 +5,26 @@ import { BasePromptTemplate, PromptTemplate } from 'langchain/prompts'
 import { ChainValues } from 'langchain/schema'
 import fetch from 'node-fetch'
 
-export const API_URL_RAW_PROMPT_TEMPLATE = `You are given the below API Documentation:
+export const API_URL_RAW_PROMPT_TEMPLATE = `你得到了以下 API 文档：
 {api_docs}
-Using this documentation, generate a json string with two keys: "url" and "data".
-The value of "url" should be a string, which is the API url to call for answering the user question.
-The value of "data" should be a dictionary of key-value pairs you want to POST to the url as a JSON body.
-Be careful to always use double quotes for strings in the json string.
-You should build the json string in order to get a response that is as short as possible, while still getting the necessary information to answer the question. Pay attention to deliberately exclude any unnecessary pieces of data in the API call.
+使用这份文档，生成一个包含 "url" 和 "data" 两个键的 JSON 字符串.
+"url" 的值应该是一个字符串，表示要调用的 API 的 URL.
+"data" 的值应该是一个字典，包含你想要作为 JSON 主体 发送 POST 请求到 url 的键值对.
+在 JSON 字符串中，一定要始终使用双引号来表示字符串.
+你应该构建这个 JSON 字符串，以便获得尽可能简短的响应，同时仍然获得回答问题所需的必要信息. 注意有意排除 API 调用中任何不必要的数据.
 
-Question:{question}
-json string:`
+问题：{question}
+JSON 字符串：`
 
 export const API_RESPONSE_RAW_PROMPT_TEMPLATE = `${API_URL_RAW_PROMPT_TEMPLATE} {api_url_body}
 
-Here is the response from the API:
+这是 API 的响应结果:
 
 {api_response}
 
-Summarize this response to answer the original question.
+总结一下这个响应结果来回答原始问题.
 
-Summary:`
+总结:`
 
 const defaultApiUrlPrompt = new PromptTemplate({
     inputVariables: ['api_docs', 'question'],
@@ -119,13 +119,13 @@ export class APIChain extends BaseChain implements APIChainInput {
         const { api_request_chain, api_answer_chain, api_docs } = data
 
         if (!api_request_chain) {
-            throw new Error('LLMChain must have api_request_chain')
+            throw new Error('需要为 LLMChain 提供 api_request_chain')
         }
         if (!api_answer_chain) {
-            throw new Error('LLMChain must have api_answer_chain')
+            throw new Error('需要为 LLMChain 提供 api_answer_chain')
         }
         if (!api_docs) {
-            throw new Error('LLMChain must have api_docs')
+            throw new Error('需要为 LLMChain 提供 api_docs')
         }
 
         return new APIChain({

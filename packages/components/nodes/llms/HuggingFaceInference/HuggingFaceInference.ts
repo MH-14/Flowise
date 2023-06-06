@@ -18,17 +18,17 @@ class HuggingFaceInference_LLMs implements INode {
         this.type = 'HuggingFaceInference'
         this.icon = 'huggingface.png'
         this.category = 'LLMs'
-        this.description = 'Wrapper around HuggingFace large language models'
+        this.description = '一个 HuggingFace 大规模语言模型的封装'
         this.baseClasses = [this.type, ...getBaseClasses(HuggingFaceInference)]
         this.inputs = [
             {
-                label: 'Model',
+                label: '模型',
                 name: 'model',
                 type: 'string',
                 placeholder: 'gpt2'
             },
             {
-                label: 'HuggingFace Api Key',
+                label: 'HuggingFace Api 密钥',
                 name: 'apiKey',
                 type: 'password'
             }

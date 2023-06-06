@@ -11,14 +11,12 @@ class TaskCreationChain extends LLMChain {
 
     static from_llm(llm: BaseChatModel): LLMChain {
         const taskCreationTemplate: string =
-            'You are a task creation AI that uses the result of an execution agent' +
-            ' to create new tasks with the following objective: {objective},' +
-            ' The last completed task has the result: {result}.' +
-            ' This result was based on this task description: {task_description}.' +
-            ' These are incomplete tasks list: {incomplete_tasks}.' +
-            ' Based on the result, create new tasks to be completed' +
-            ' by the AI system that do not overlap with incomplete tasks.' +
-            ' Return the tasks as an array.'
+            '您是一个任务创建AI, 使用执行代理的结果创建新任务, 目标如下: {objective}.' +
+            ' 上一个已完成的任务的结果为：{result}.' +
+            ' 该结果基于以下任务描述：{task_description}.' +
+            ' 以下是未完成任务列表：{incomplete_tasks}' +
+            ' 基于该结果, 创建新任务, 由AI系统完成, 不与未完成任务重叠.' +
+            ' 将任务作为数组返回.'
 
         const prompt = new PromptTemplate({
             template: taskCreationTemplate,
@@ -36,13 +34,12 @@ class TaskPrioritizationChain extends LLMChain {
 
     static from_llm(llm: BaseChatModel): TaskPrioritizationChain {
         const taskPrioritizationTemplate: string =
-            'You are a task prioritization AI tasked with cleaning the formatting of and reprioritizing' +
-            ' the following task list: {task_names}.' +
-            ' Consider the ultimate objective of your team: {objective}.' +
-            ' Do not remove any tasks. Return the result as a numbered list, like:' +
-            ' #. First task' +
-            ' #. Second task' +
-            ' Start the task list with number {next_task_id}.'
+            '你是一款任务优先级AI, 任务是清理并重新排列以下任务列表: {task_names}.' +
+            ' 请考虑您的团队的最终目标：{objective}.' +
+            ' 请勿删除任何任务.请以编号列表的形式返回结果，例如：' +
+            ' #. 第一项任务' +
+            ' #. 第二项任务' +
+            ' 请使用数字 {next_task_id} 开始任务列表.'
         const prompt = new PromptTemplate({
             template: taskPrioritizationTemplate,
             inputVariables: ['task_names', 'next_task_id', 'objective']
@@ -58,10 +55,10 @@ class ExecutionChain extends LLMChain {
 
     static from_llm(llm: BaseChatModel): LLMChain {
         const executionTemplate: string =
-            'You are an AI who performs one task based on the following objective: {objective}.' +
-            ' Take into account these previously completed tasks: {context}.' +
-            ' Your task: {task}.' +
-            ' Response:'
+            '你是一款AI, 根据以下目标执行一项任务: {objective}.' +
+            ' 在执行任务前，你需要考虑之前已完成的任务：{context}.' +
+            ' 你的任务是：{task}.' +
+            ' 回复: '
 
         const prompt = new PromptTemplate({
             template: executionTemplate,
@@ -203,7 +200,7 @@ export class BabyAGI {
 
     async call(inputs: Record<string, any>): Promise<string> {
         const { objective } = inputs
-        const firstTask = inputs.first_task || 'Make a todo list'
+        const firstTask = inputs.first_task || '制作一个待办事项清单'
         this.addTask({ task_id: 1, task_name: firstTask })
         let numIters = 0
         let loop = true

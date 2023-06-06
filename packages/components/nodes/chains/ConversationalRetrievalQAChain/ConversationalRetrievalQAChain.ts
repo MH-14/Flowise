@@ -4,19 +4,19 @@ import { CustomChainHandler, getBaseClasses } from '../../../src/utils'
 import { ConversationalRetrievalQAChain } from 'langchain/chains'
 import { BaseRetriever } from 'langchain/schema'
 
-const default_qa_template = `Use the following pieces of context to answer the question at the end. If you don't know the answer, just say that you don't know, don't try to make up an answer.
+const default_qa_template = `请使用下面的上下文片段回答后面的问题. 如果您不知道答案，请直接说不知道，不要试图编造答案.
 
 {context}
 
-Question: {question}
-Helpful Answer:`
+问题: {question}
+有用的答案:`
 
-const qa_template = `Use the following pieces of context to answer the question at the end.
+const qa_template = `请使用下面的上下文片段回答后面的问题.
 
 {context}
 
-Question: {question}
-Helpful Answer:`
+问题: {question}
+有用的答案:`
 
 class ConversationalRetrievalQAChain_Chains implements INode {
     label: string
@@ -34,28 +34,28 @@ class ConversationalRetrievalQAChain_Chains implements INode {
         this.type = 'ConversationalRetrievalQAChain'
         this.icon = 'chain.svg'
         this.category = 'Chains'
-        this.description = 'Document QA - built on RetrievalQAChain to provide a chat history component'
+        this.description = '文档问答(Document QA) - 基于检索问答链 (RetrievalQAChain) 构建, 提供聊天历史记录组件'
         this.baseClasses = [this.type, ...getBaseClasses(ConversationalRetrievalQAChain)]
         this.inputs = [
             {
-                label: 'Language Model',
+                label: '语言模型',
                 name: 'model',
                 type: 'BaseLanguageModel'
             },
             {
-                label: 'Vector Store Retriever',
+                label: '向量存储检索器',
                 name: 'vectorStoreRetriever',
                 type: 'BaseRetriever'
             },
             {
-                label: 'System Message',
+                label: '系统消息',
                 name: 'systemMessagePrompt',
                 type: 'string',
                 rows: 4,
                 additionalParams: true,
                 optional: true,
                 placeholder:
-                    'I want you to act as a document that I am having a conversation with. Your name is "AI Assistant". You will provide me with answers from the given info. If the answer is not included, say exactly "Hmm, I am not sure." and stop after that. Refuse to answer any question not about the info. Never break character.'
+                    '我希望你扮演一份我正在与之交谈的文件. 你的名字是“AI助手”. 你将从给定的信息中为我提供答案. 如果答案不在其中, 请准确地说“嗯, 我不确定.”然后停止回答. 拒绝回答任何与信息无关的问题. 永远不要打破角色.'
             }
         ]
     }

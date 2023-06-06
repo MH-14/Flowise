@@ -20,20 +20,20 @@ class OpenAPIToolkit_Tools implements INode {
         this.type = 'OpenAPIToolkit'
         this.icon = 'openapi.png'
         this.category = 'Tools'
-        this.description = 'Load OpenAPI specification'
+        this.description = '加载 OpenAPI 规范'
         this.inputs = [
             {
-                label: 'OpenAI API Key',
+                label: 'OpenAI API 密钥',
                 name: 'openAIApiKey',
                 type: 'password'
             },
             {
-                label: 'Language Model',
+                label: '语言模型',
                 name: 'model',
                 type: 'BaseLanguageModel'
             },
             {
-                label: 'YAML File',
+                label: 'YAML 文件',
                 name: 'yamlFile',
                 type: 'file',
                 fileType: '.yaml'
@@ -53,7 +53,7 @@ class OpenAPIToolkit_Tools implements INode {
         const utf8String = bf.toString('utf-8')
         const data = load(utf8String) as JsonObject
         if (!data) {
-            throw new Error('Failed to load OpenAPI spec')
+            throw new Error('加载 OpenAPI 规范失败')
         }
 
         const headers = {

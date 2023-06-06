@@ -20,35 +20,35 @@ class LLMChain_Chains implements INode {
         this.type = 'LLMChain'
         this.icon = 'chain.svg'
         this.category = 'Chains'
-        this.description = 'Chain to run queries against LLMs'
+        this.description = '对LLMs运行查询的链'
         this.baseClasses = [this.type, ...getBaseClasses(LLMChain)]
         this.inputs = [
             {
-                label: 'Language Model',
+                label: '语言模型',
                 name: 'model',
                 type: 'BaseLanguageModel'
             },
             {
-                label: 'Prompt',
+                label: 'Prompt(提示)',
                 name: 'prompt',
                 type: 'BasePromptTemplate'
             },
             {
-                label: 'Chain Name',
+                label: 'Chain 名称',
                 name: 'chainName',
                 type: 'string',
-                placeholder: 'Name Your Chain',
+                placeholder: '为你的Chain起一个名字',
                 optional: true
             }
         ]
         this.outputs = [
             {
-                label: 'LLM Chain',
+                label: 'LLM 链',
                 name: 'llmChain',
                 baseClasses: [this.type, ...getBaseClasses(LLMChain)]
             },
             {
-                label: 'Output Prediction',
+                label: '输出预测',
                 name: 'outputPrediction',
                 baseClasses: ['string']
             }
@@ -136,7 +136,7 @@ const runPrediction = async (
         } else if (seen.length === 1) {
             // If one inputVariable is not specify, use input (user's question) as value
             const lastValue = seen.pop()
-            if (!lastValue) throw new Error('Please provide Prompt Values')
+            if (!lastValue) throw new Error('请提供 Prompt Values')
             const options = {
                 ...promptValues,
                 [lastValue]: input
@@ -150,7 +150,7 @@ const runPrediction = async (
                 return res?.text
             }
         } else {
-            throw new Error(`Please provide Prompt Values for: ${seen.join(', ')}`)
+            throw new Error(`请为 ${seen.join(', ')} 提供 Prompt Values`)
         }
     } else {
         if (isStreaming) {

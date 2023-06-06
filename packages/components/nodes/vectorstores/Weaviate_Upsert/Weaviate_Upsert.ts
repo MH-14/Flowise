@@ -17,22 +17,22 @@ class WeaviateUpsert_VectorStores implements INode {
     outputs: INodeOutputsValue[]
 
     constructor() {
-        this.label = 'Weaviate Upsert Document'
+        this.label = '插入或更新 Weaviate 文档'
         this.name = 'weaviateUpsert'
         this.type = 'Weaviate'
         this.icon = 'weaviate.png'
         this.category = 'Vector Stores'
-        this.description = 'Upsert documents to Weaviate'
+        this.description = '将文档插入或更新到 Weaviate 中'
         this.baseClasses = [this.type, 'VectorStoreRetriever', 'BaseRetriever']
         this.inputs = [
             {
-                label: 'Document',
+                label: '文档',
                 name: 'document',
                 type: 'Document',
                 list: true
             },
             {
-                label: 'Embeddings',
+                label: '嵌入向量',
                 name: 'embeddings',
                 type: 'Embeddings'
             },
@@ -53,7 +53,7 @@ class WeaviateUpsert_VectorStores implements INode {
                 ]
             },
             {
-                label: 'Weaviate Host',
+                label: 'Weaviate 端口',
                 name: 'weaviateHost',
                 type: 'string',
                 placeholder: 'localhost:8080'
@@ -65,13 +65,13 @@ class WeaviateUpsert_VectorStores implements INode {
                 placeholder: 'Test'
             },
             {
-                label: 'Weaviate API Key',
+                label: 'Weaviate API 密钥',
                 name: 'weaviateApiKey',
                 type: 'password',
                 optional: true
             },
             {
-                label: 'Weaviate Text Key',
+                label: 'Weaviate Text 密钥',
                 name: 'weaviateTextKey',
                 type: 'string',
                 placeholder: 'text',
@@ -79,7 +79,7 @@ class WeaviateUpsert_VectorStores implements INode {
                 additionalParams: true
             },
             {
-                label: 'Weaviate Metadata Keys',
+                label: 'Weaviate Metadata 密钥',
                 name: 'weaviateMetadataKeys',
                 type: 'string',
                 rows: 4,
@@ -90,12 +90,12 @@ class WeaviateUpsert_VectorStores implements INode {
         ]
         this.outputs = [
             {
-                label: 'Weaviate Retriever',
+                label: 'Weaviate 检索器',
                 name: 'retriever',
                 baseClasses: this.baseClasses
             },
             {
-                label: 'Weaviate Vector Store',
+                label: 'Weaviate 向量存储',
                 name: 'vectorStore',
                 baseClasses: [this.type, ...getBaseClasses(WeaviateStore)]
             }

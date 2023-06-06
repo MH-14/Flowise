@@ -20,41 +20,41 @@ class AutoGPT_Agents implements INode {
         this.type = 'AutoGPT'
         this.category = 'Agents'
         this.icon = 'autogpt.png'
-        this.description = 'Autonomous agent with chain of thoughts for self-guided task completion'
+        this.description = '自主智能代理，具有自我引导任务完成的思维链'
         this.baseClasses = ['AutoGPT']
         this.inputs = [
             {
-                label: 'Allowed Tools',
+                label: '允许使用的工具',
                 name: 'tools',
                 type: 'Tool',
                 list: true
             },
             {
-                label: 'Chat Model',
+                label: '聊天模型',
                 name: 'model',
                 type: 'BaseChatModel'
             },
             {
-                label: 'Vector Store Retriever',
+                label: '向量存储检索器',
                 name: 'vectorStoreRetriever',
                 type: 'BaseRetriever'
             },
             {
-                label: 'AutoGPT Name',
+                label: 'AutoGPT 名称',
                 name: 'aiName',
                 type: 'string',
                 placeholder: 'Tom',
                 optional: true
             },
             {
-                label: 'AutoGPT Role',
+                label: 'AutoGPT 角色',
                 name: 'aiRole',
                 type: 'string',
                 placeholder: 'Assistant',
                 optional: true
             },
             {
-                label: 'Maximum Loop',
+                label: '最大循环次数',
                 name: 'maxLoop',
                 type: 'number',
                 default: 5,
@@ -87,7 +87,7 @@ class AutoGPT_Agents implements INode {
         const executor = nodeData.instance as AutoGPT
         try {
             const res = await executor.run([input])
-            return res || 'I have completed all my tasks.'
+            return res || '我已经完成了所有任务.'
         } catch (e) {
             console.error(e)
             throw new Error(e)

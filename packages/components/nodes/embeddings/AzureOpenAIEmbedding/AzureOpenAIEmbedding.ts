@@ -19,28 +19,28 @@ class AzureOpenAIEmbedding_Embeddings implements INode {
         this.type = 'AzureOpenAIEmbeddings'
         this.icon = 'Azure.svg'
         this.category = 'Embeddings'
-        this.description = 'Azure OpenAI API to generate embeddings for a given text'
+        this.description = '使用 Azure OpenAI API 为给定的文本生成嵌入'
         this.baseClasses = [this.type, ...getBaseClasses(OpenAIEmbeddings)]
         this.inputs = [
             {
-                label: 'Azure OpenAI Api Key',
+                label: 'Azure OpenAI Api 密钥',
                 name: 'azureOpenAIApiKey',
                 type: 'password'
             },
             {
-                label: 'Azure OpenAI Api Instance Name',
+                label: 'Azure OpenAI Api 示例名称',
                 name: 'azureOpenAIApiInstanceName',
                 type: 'string',
                 placeholder: 'YOUR-INSTANCE-NAME'
             },
             {
-                label: 'Azure OpenAI Api Deployment Name',
+                label: 'Azure OpenAI Api 部署名称',
                 name: 'azureOpenAIApiDeploymentName',
                 type: 'string',
                 placeholder: 'YOUR-DEPLOYMENT-NAME'
             },
             {
-                label: 'Azure OpenAI Api Version',
+                label: 'Azure OpenAI Api 版本',
                 name: 'azureOpenAIApiVersion',
                 type: 'options',
                 options: [
@@ -64,7 +64,7 @@ class AzureOpenAIEmbedding_Embeddings implements INode {
                 additionalParams: true
             },
             {
-                label: 'Timeout',
+                label: '超时时间',
                 name: 'timeout',
                 type: 'number',
                 optional: true,

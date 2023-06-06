@@ -18,7 +18,7 @@ class AzureOpenAI_LLMs implements INode {
         this.type = 'AzureOpenAI'
         this.icon = 'Azure.svg'
         this.category = 'LLMs'
-        this.description = 'Wrapper around Azure OpenAI large language models'
+        this.description = '一个 Azure OpenAI 大规模语言模型的封装'
         this.baseClasses = [this.type, ...getBaseClasses(OpenAI)]
         this.inputs = [
             {
@@ -27,7 +27,7 @@ class AzureOpenAI_LLMs implements INode {
                 type: 'password'
             },
             {
-                label: 'Model Name',
+                label: '模型',
                 name: 'modelName',
                 type: 'options',
                 options: [
@@ -91,19 +91,19 @@ class AzureOpenAI_LLMs implements INode {
                 optional: true
             },
             {
-                label: 'Azure OpenAI Api Instance Name',
+                label: 'Azure OpenAI Api Instance 名称',
                 name: 'azureOpenAIApiInstanceName',
                 type: 'string',
                 placeholder: 'YOUR-INSTANCE-NAME'
             },
             {
-                label: 'Azure OpenAI Api Deployment Name',
+                label: 'Azure OpenAI Api Deployment 名称',
                 name: 'azureOpenAIApiDeploymentName',
                 type: 'string',
                 placeholder: 'YOUR-DEPLOYMENT-NAME'
             },
             {
-                label: 'Azure OpenAI Api Version',
+                label: 'Azure OpenAI Api 版本',
                 name: 'azureOpenAIApiVersion',
                 type: 'options',
                 options: [
@@ -154,7 +154,7 @@ class AzureOpenAI_LLMs implements INode {
                 additionalParams: true
             },
             {
-                label: 'Timeout',
+                label: '超时时间',
                 name: 'timeout',
                 type: 'number',
                 optional: true,

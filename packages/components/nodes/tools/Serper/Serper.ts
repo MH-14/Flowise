@@ -18,10 +18,10 @@ class Serper_Tools implements INode {
         this.type = 'Serper'
         this.icon = 'serper.png'
         this.category = 'Tools'
-        this.description = 'Wrapper around Serper.dev - Google Search API'
+        this.description = '一个对Serper.dev提供的API进行封装的工具'
         this.inputs = [
             {
-                label: 'Serper Api Key',
+                label: 'Serper Api 密钥',
                 name: 'apiKey',
                 type: 'password'
             }

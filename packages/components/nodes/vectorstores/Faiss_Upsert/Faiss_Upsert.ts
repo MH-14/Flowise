@@ -16,41 +16,41 @@ class FaissUpsert_VectorStores implements INode {
     outputs: INodeOutputsValue[]
 
     constructor() {
-        this.label = 'Faiss Upsert Document'
+        this.label = '插入或更新 Faiss 文档'
         this.name = 'faissUpsert'
         this.type = 'Faiss'
         this.icon = 'faiss.svg'
         this.category = 'Vector Stores'
-        this.description = 'Upsert documents to Faiss'
+        this.description = '将文档插入或更新到 Faiss 中'
         this.baseClasses = [this.type, 'VectorStoreRetriever', 'BaseRetriever']
         this.inputs = [
             {
-                label: 'Document',
+                label: '文档',
                 name: 'document',
                 type: 'Document',
                 list: true
             },
             {
-                label: 'Embeddings',
+                label: '嵌入向量',
                 name: 'embeddings',
                 type: 'Embeddings'
             },
             {
-                label: 'Base Path to store',
+                label: '用于存储的 Base Path',
                 name: 'basePath',
-                description: 'Path to store faiss.index file',
+                description: '用于存储 faiss.index 文件的路径',
                 placeholder: `C:\\Users\\User\\Desktop`,
                 type: 'string'
             }
         ]
         this.outputs = [
             {
-                label: 'Faiss Retriever',
+                label: 'Faiss 检索器',
                 name: 'retriever',
                 baseClasses: this.baseClasses
             },
             {
-                label: 'Faiss Vector Store',
+                label: 'Faiss 向量存储',
                 name: 'vectorStore',
                 baseClasses: [this.type, ...getBaseClasses(FaissStore)]
             }

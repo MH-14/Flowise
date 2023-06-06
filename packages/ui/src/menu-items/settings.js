@@ -13,28 +13,28 @@ const settings = {
     children: [
         {
             id: 'duplicateChatflow',
-            title: 'Duplicate Chatflow',
+            title: '复制 Chatflow',
             type: 'item',
             url: '',
             icon: icons.IconCopy
         },
         {
             id: 'loadChatflow',
-            title: 'Load Chatflow',
+            title: '加载 Chatflow',
             type: 'item',
             url: '',
             icon: icons.IconFileUpload
         },
         {
             id: 'exportChatflow',
-            title: 'Export Chatflow',
+            title: '导出 Chatflow',
             type: 'item',
             url: '',
             icon: icons.IconFileExport
         },
         {
             id: 'deleteChatflow',
-            title: 'Delete Chatflow',
+            title: '删除 Chatflow',
             type: 'item',
             url: '',
             icon: icons.IconTrash

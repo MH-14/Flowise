@@ -18,31 +18,31 @@ class NotionDB_DocumentLoaders implements INode {
         this.type = 'Document'
         this.icon = 'notion.png'
         this.category = 'Document Loaders'
-        this.description = 'Load data from Notion Database ID'
+        this.description = '从 Notion 数据库 ID 加载数据'
         this.baseClasses = [this.type]
         this.inputs = [
             {
-                label: 'Text Splitter',
+                label: '文本分割器',
                 name: 'textSplitter',
                 type: 'TextSplitter',
                 optional: true
             },
             {
-                label: 'Notion Database Id',
+                label: 'Notion 数据库 Id',
                 name: 'databaseId',
                 type: 'string',
                 description:
-                    'If your URL looks like - https://www.notion.so/<long_hash_1>?v=<long_hash_2>, then <long_hash_1> is the database ID'
+                    '如果你的 URL 看起来像 - https://www.notion.so/<long_hash_1>?v=<long_hash_2>，那么 <long_hash_1> 就是数据库 ID。'
             },
             {
-                label: 'Notion Integration Token',
+                label: 'Notion 集成 令牌',
                 name: 'notionIntegrationToken',
                 type: 'password',
                 description:
-                    'You can find integration token <a target="_blank" href="https://developers.notion.com/docs/create-a-notion-integration#step-1-create-an-integration">here</a>'
+                    '你可以在<a target="_blank" href="https://developers.notion.com/docs/create-a-notion-integration#step-1-create-an-integration">这里</a>找到集成token'
             },
             {
-                label: 'Page Size Limit',
+                label: '页大小限制',
                 name: 'pageSizeLimit',
                 type: 'number',
                 default: 10

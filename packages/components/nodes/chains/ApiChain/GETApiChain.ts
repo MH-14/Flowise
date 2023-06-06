@@ -4,16 +4,15 @@ import { CustomChainHandler, getBaseClasses } from '../../../src/utils'
 import { BaseLanguageModel } from 'langchain/base_language'
 import { PromptTemplate } from 'langchain/prompts'
 
-export const API_URL_RAW_PROMPT_TEMPLATE = `You are given the below API Documentation:
+export const API_URL_RAW_PROMPT_TEMPLATE = `给你以下API文档: 
 {api_docs}
-Using this documentation, generate the full API url to call for answering the user question.
-You should build the API url in order to get a response that is as short as possible, while still getting the necessary information to answer the question. Pay attention to deliberately exclude any unnecessary pieces of data in the API call.
+使用这份文档, 生成完整的API地址以回答用户的问题。
+你应该构建API url, 以便获得尽可能简短的响应, 同时仍然获取回答问题所需的必要信息。请注意在API调用中刻意排除任何不必要的数据片段。
 
-Question:{question}
-API url:`
+问题: {question}
+API url: `
 
-export const API_RESPONSE_RAW_PROMPT_TEMPLATE =
-    'Given this {api_response} response for {api_url}. use the given response to answer this {question}'
+export const API_RESPONSE_RAW_PROMPT_TEMPLATE = '根据 {api_url} 的请求，得到了 {api_response} 的响应。请使用此响应来回答 {question}。'
 
 class GETApiChain_Chains implements INode {
     label: string
@@ -31,44 +30,43 @@ class GETApiChain_Chains implements INode {
         this.type = 'GETApiChain'
         this.icon = 'apichain.svg'
         this.category = 'Chains'
-        this.description = 'Chain to run queries against GET API'
+        this.description = '在 GET API 上运行查询的链式操作'
         this.baseClasses = [this.type, ...getBaseClasses(APIChain)]
         this.inputs = [
             {
-                label: 'Language Model',
+                label: '语言模型',
                 name: 'model',
                 type: 'BaseLanguageModel'
             },
             {
-                label: 'API Documentation',
+                label: 'API 文档',
                 name: 'apiDocs',
                 type: 'string',
                 description:
-                    'Description of how API works. Please refer to more <a target="_blank" href="https://github.com/hwchase17/langchain/blob/master/langchain/chains/api/open_meteo_docs.py">examples</a>',
+                    'API 工作原理的描述。请参考 <a target="_blank" href="https://github.com/hwchase17/langchain/blob/master/langchain/chains/api/open_meteo_docs.py">示例</a>',
                 rows: 4
             },
             {
-                label: 'Headers',
+                label: '头部',
                 name: 'headers',
                 type: 'json',
                 additionalParams: true,
                 optional: true
             },
             {
-                label: 'URL Prompt',
+                label: 'URL Prompt(提示)',
                 name: 'urlPrompt',
                 type: 'string',
-                description: 'Prompt used to tell LLMs how to construct the URL. Must contains {api_docs} and {question}',
+                description: '用于告诉语言模型如何构建URL的Prompt(提示)。必须包含{api_docs}和{question}',
                 default: API_URL_RAW_PROMPT_TEMPLATE,
                 rows: 4,
                 additionalParams: true
             },
             {
-                label: 'Answer Prompt',
+                label: '答案 Prompt(提示)',
                 name: 'ansPrompt',
                 type: 'string',
-                description:
-                    'Prompt used to tell LLMs how to return the API response. Must contains {api_response}, {api_url}, and {question}',
+                description: '用于告诉语言模型如何返回API响应的Prompt(提示)。必须包含{api_response}、{api_url}和{question}',
                 default: API_RESPONSE_RAW_PROMPT_TEMPLATE,
                 rows: 4,
                 additionalParams: true

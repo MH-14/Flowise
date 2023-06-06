@@ -14,36 +14,35 @@ class ChainTool_Tools implements INode {
     inputs: INodeParams[]
 
     constructor() {
-        this.label = 'Chain Tool'
+        this.label = '链工具'
         this.name = 'chainTool'
         this.type = 'ChainTool'
         this.icon = 'chaintool.svg'
         this.category = 'Tools'
-        this.description = 'Use a chain as allowed tool for agent'
+        this.description = '将 Chain 作为允许的 tool 供代理使用'
         this.baseClasses = [this.type, ...getBaseClasses(ChainTool)]
         this.inputs = [
             {
-                label: 'Chain Name',
+                label: '链名称',
                 name: 'name',
                 type: 'string',
                 placeholder: 'state-of-union-qa'
             },
             {
-                label: 'Chain Description',
+                label: '链描述',
                 name: 'description',
                 type: 'string',
                 rows: 3,
-                placeholder:
-                    'State of the Union QA - useful for when you need to ask questions about the most recent state of the union address.'
+                placeholder: '国情咨文问答 - 当您需要询问有关最近国情咨文的问题时非常有用。'
             },
             {
-                label: 'Return Direct',
+                label: '直接返回',
                 name: 'returnDirect',
                 type: 'boolean',
                 optional: true
             },
             {
-                label: 'Base Chain',
+                label: '基础链',
                 name: 'baseChain',
                 type: 'BaseChain'
             }

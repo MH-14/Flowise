@@ -1,132 +1,132 @@
 <!-- markdownlint-disable MD030 -->
 
-# Flowise - LangchainJS UI
+# Flowise - LangchainJS UI 中文
 
 <a href="https://github.com/FlowiseAI/Flowise">
 <img width="100%" src="https://github.com/FlowiseAI/Flowise/blob/main/images/flowise.gif?raw=true"></a>
 
-Drag & drop UI to build your customized LLM flow using [LangchainJS](https://github.com/hwchase17/langchainjs)
+利用 [LangchainJS](https://github.com/hwchase17/langchainjs) 和 拖拽构建你自定义的 LLM
 
-## ⚡Quick Start
+## ⚡ 快速开始
 
-Download and Install [NodeJS](https://nodejs.org/en/download) >= 18.15.0
+下载并安装 [NodeJS](https://nodejs.org/en/download) >= 18.15.0
 
-1. Install Flowise
+1. 安装 Flowise
     ```bash
     npm install -g flowise
     ```
-2. Start Flowise
+2. 启动 Flowise
 
     ```bash
     npx flowise start
     ```
 
-    With username & password
+    想要使用 username & password ?
 
     ```bash
     npx flowise start --FLOWISE_USERNAME=user --FLOWISE_PASSWORD=1234
     ```
 
-3. Open [http://localhost:3000](http://localhost:3000)
+3. 打开 [http://localhost:3000](http://localhost:3000)
 
 ## 🐳 Docker
 
 ### Docker Compose
 
-1. Go to `docker` folder at the root of the project
-2. Create `.env` file and specify the `PORT` (refer to `.env.example`)
+1. 跳转到位于项目根目录的 `docker` 文件夹
+2. 创建 `.env` 文件并指定 `PORT` (参考 `.env.example`)
 3. `docker-compose up -d`
-4. Open [http://localhost:3000](http://localhost:3000)
-5. You can bring the containers down by `docker-compose stop`
+4. 打开 [http://localhost:3000](http://localhost:3000)
+5. 你可以运行这条命令停止运行 `docker-compose stop`
 
 ### Docker Image
 
-1. Build the image locally:
+1. 本地构建镜像:
     ```bash
     docker build --no-cache -t flowise .
     ```
-2. Run image:
+2. 启动镜像:
 
     ```bash
     docker run -d --name flowise -p 3000:3000 flowise
     ```
 
-3. Stop image:
+3. 停止服务:
     ```bash
     docker stop flowise
     ```
 
-## 👨‍💻 Developers
+## 👨‍💻 开发者相关
 
-Flowise has 3 different modules in a single mono repository.
+Flowise 有 3 个 不同的模块在这个 monorepo 中.
 
--   `server`: Node backend to serve API logics
--   `ui`: React frontend
--   `components`: Langchain components
+-   `server`: Node 实现的后端逻辑
+-   `ui`: React 实现的前端
+-   `components`: Langchain 组件
 
-### Prerequisite
+### 前置条件
 
--   Install Yarn
+-   安装 Yarn
     ```bash
     npm i -g yarn
     ```
 
-### Setup
+### 启动
 
-1. Clone the repository
+1. 克隆这个仓库
 
     ```bash
-    git clone https://github.com/FlowiseAI/Flowise.git
+    git clone https://github.com/MH-14/Flowise-ZH.git
     ```
 
-2. Go into repository folder
+2. 进入仓库文件夹
 
     ```bash
     cd Flowise
     ```
 
-3. Install all dependencies of all modules:
+3. 安装所有模块需要的依赖:
 
     ```bash
     yarn install
     ```
 
-4. Build all the code:
+4. 构建全部的代码:
 
     ```bash
     yarn build
     ```
 
-5. Start the app:
+5. 启动应用:
 
     ```bash
     yarn start
     ```
 
-    You can now access the app on [http://localhost:3000](http://localhost:3000)
+    你能在这里访问到应用 [http://localhost:3000](http://localhost:3000)
 
-6. For development build:
+6. 对于开发者的方式:
 
     ```bash
     yarn dev
     ```
 
-    Any code changes will reload the app automatically on [http://localhost:8080](http://localhost:8080)
+    任何代码的改变都将让应用重新加载 [http://localhost:8080](http://localhost:8080)
 
-## 🔒 Authentication
+## 🔒 认证
 
-To enable app level authentication, add `FLOWISE_USERNAME` and `FLOWISE_PASSWORD` to the `.env` file in `packages/server`:
+要开启应用层的认证, 在 `packages/server` 下的 `.env` 添加 `FLOWISE_USERNAME` 和 `FLOWISE_PASSWORD`:
 
 ```
 FLOWISE_USERNAME=user
 FLOWISE_PASSWORD=1234
 ```
 
-## 📖 Documentation
+## 📖 官方文档
 
 [Flowise Docs](https://docs.flowiseai.com/)
 
-## 🌐 Self Host
+## 🌐 自机部署
 
 ### [Railway](https://docs.flowiseai.com/deployment/railway)
 
@@ -142,19 +142,19 @@ FLOWISE_PASSWORD=1234
 
 ### [GCP](https://docs.flowiseai.com/deployment/gcp)
 
-## 💻 Cloud Hosted
+## 💻 云部署
 
-Coming soon
+马上到
 
-## 🙋 Support
+## 🙋 支持
 
-Feel free to ask any questions, raise problems, and request new features in [discussion](https://github.com/FlowiseAI/Flowise/discussions)
+随意提问, 有新特性需求一起[讨论](https://github.com/FlowiseAI/Flowise/discussions)
 
-## 🙌 Contributing
+## 🙌 贡献者
 
 See [contributing guide](CONTRIBUTING.md). Reach out to us at [Discord](https://discord.gg/jbaHfsRVBW) if you have any questions or issues.
 [![Star History Chart](https://api.star-history.com/svg?repos=FlowiseAI/Flowise&type=Timeline)](https://star-history.com/#FlowiseAI/Flowise&Date)
 
-## 📄 License
+## 📄 证书
 
 Source code in this repository is made available under the [MIT License](LICENSE.md).

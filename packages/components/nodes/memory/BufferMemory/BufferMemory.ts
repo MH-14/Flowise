@@ -18,17 +18,17 @@ class BufferMemory_Memory implements INode {
         this.type = 'BufferMemory'
         this.icon = 'memory.svg'
         this.category = 'Memory'
-        this.description = 'Remembers previous conversational back and forths directly'
+        this.description = '直接记忆之前的对话互动'
         this.baseClasses = [this.type, ...getBaseClasses(BufferMemory)]
         this.inputs = [
             {
-                label: 'Memory Key',
+                label: '记忆标识',
                 name: 'memoryKey',
                 type: 'string',
                 default: 'chat_history'
             },
             {
-                label: 'Input Key',
+                label: '输入标识',
                 name: 'inputKey',
                 type: 'string',
                 default: 'input'

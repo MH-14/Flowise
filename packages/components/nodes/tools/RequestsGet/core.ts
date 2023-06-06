@@ -1,8 +1,7 @@
 import fetch from 'node-fetch'
 import { Tool } from 'langchain/tools'
 
-export const desc = `A portal to the internet. Use this when you need to get specific content from a website. 
-Input should be a  url (i.e. https://www.google.com). The output will be the text response of the GET request.`
+export const desc = `一个互联网门户. 当您需要从网站获取特定内容时, 请使用此功能. 输入应该是一个URL (例如 https://www.google.com). 输出将是GET请求的文本响应`
 
 export interface Headers {
     [key: string]: string

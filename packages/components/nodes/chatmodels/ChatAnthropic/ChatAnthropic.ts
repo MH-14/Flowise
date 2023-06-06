@@ -18,16 +18,16 @@ class ChatAnthropic_ChatModels implements INode {
         this.type = 'ChatAnthropic'
         this.icon = 'chatAnthropic.png'
         this.category = 'Chat Models'
-        this.description = 'Wrapper around ChatAnthropic large language models that use the Chat endpoint'
+        this.description = '一个封装了ChatAnthropic大型语言模型的工具, 它使用Chat终端节点'
         this.baseClasses = [this.type, ...getBaseClasses(ChatAnthropic)]
         this.inputs = [
             {
-                label: 'ChatAnthropic Api Key',
+                label: 'ChatAnthropic Api 密钥',
                 name: 'anthropicApiKey',
                 type: 'password'
             },
             {
-                label: 'Model Name',
+                label: '模型名称',
                 name: 'modelName',
                 type: 'options',
                 options: [

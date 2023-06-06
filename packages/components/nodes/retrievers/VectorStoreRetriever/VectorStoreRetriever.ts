@@ -17,27 +17,27 @@ class VectorStoreRetriever_Retrievers implements INode {
         this.type = 'VectorStoreRetriever'
         this.icon = 'vectorretriever.svg'
         this.category = 'Retrievers'
-        this.description = 'Store vector store as retriever to be later queried by MultiRetrievalQAChain'
+        this.description = '将向量存储为检索器, 以便稍后由MultiRetrievalQAChain进行查询'
         this.baseClasses = [this.type]
         this.inputs = [
             {
-                label: 'Vector Store',
+                label: '向量存储',
                 name: 'vectorStore',
                 type: 'VectorStore'
             },
             {
-                label: 'Retriever Name',
+                label: '检索器名称',
                 name: 'name',
                 type: 'string',
-                placeholder: 'netflix movies'
+                placeholder: '奈飞电影'
             },
             {
-                label: 'Retriever Description',
+                label: '检索器描述',
                 name: 'description',
                 type: 'string',
                 rows: 3,
-                description: 'Description of when to use the vector store retriever',
-                placeholder: 'Good for answering questions about netflix movies'
+                description: '描述什么条件下使用该向量存储检索器',
+                placeholder: '擅长回答有关奈飞电影的问题'
             }
         ]
     }

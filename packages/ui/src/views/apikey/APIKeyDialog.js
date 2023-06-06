@@ -63,7 +63,7 @@ const APIKeyDialog = ({ show, dialogProps, onCancel, onConfirm }) => {
             const createResp = await apikeyApi.createNewAPI({ keyName })
             if (createResp.data) {
                 enqueueSnackbar({
-                    message: 'New API key added',
+                    message: '已添加新的 API 密钥',
                     options: {
                         key: new Date().getTime() + Math.random(),
                         variant: 'success',
@@ -79,7 +79,7 @@ const APIKeyDialog = ({ show, dialogProps, onCancel, onConfirm }) => {
         } catch (error) {
             const errorData = error.response.data || `${error.response.status}: ${error.response.statusText}`
             enqueueSnackbar({
-                message: `Failed to add new API key: ${errorData}`,
+                message: `添加新的 API 密钥失败：${errorData}`,
                 options: {
                     key: new Date().getTime() + Math.random(),
                     variant: 'error',
@@ -100,7 +100,7 @@ const APIKeyDialog = ({ show, dialogProps, onCancel, onConfirm }) => {
             const saveResp = await apikeyApi.updateAPI(dialogProps.key.id, { keyName })
             if (saveResp.data) {
                 enqueueSnackbar({
-                    message: 'API Key saved',
+                    message: 'API 密钥已保存',
                     options: {
                         key: new Date().getTime() + Math.random(),
                         variant: 'success',
@@ -116,7 +116,7 @@ const APIKeyDialog = ({ show, dialogProps, onCancel, onConfirm }) => {
         } catch (error) {
             const errorData = error.response.data || `${error.response.status}: ${error.response.statusText}`
             enqueueSnackbar({
-                message: `Failed to save API key: ${errorData}`,
+                message: `保存API密钥失败：${errorData}`,
                 options: {
                     key: new Date().getTime() + Math.random(),
                     variant: 'error',
@@ -147,7 +147,7 @@ const APIKeyDialog = ({ show, dialogProps, onCancel, onConfirm }) => {
             <DialogContent>
                 {dialogProps.type === 'EDIT' && (
                     <Box sx={{ p: 2 }}>
-                        <Typography variant='overline'>API Key</Typography>
+                        <Typography variant='overline'>API 密钥</Typography>
                         <Stack direction='row' sx={{ mb: 1 }}>
                             <Typography
                                 sx={{
@@ -162,7 +162,7 @@ const APIKeyDialog = ({ show, dialogProps, onCancel, onConfirm }) => {
                                 {dialogProps.key.apiKey}
                             </Typography>
                             <IconButton
-                                title='Copy API Key'
+                                title='复制API密钥'
                                 color='success'
                                 onClick={(event) => {
                                     navigator.clipboard.writeText(dialogProps.key.apiKey)
@@ -188,7 +188,7 @@ const APIKeyDialog = ({ show, dialogProps, onCancel, onConfirm }) => {
                                 }}
                             >
                                 <Typography variant='h6' sx={{ pl: 1, pr: 1, color: 'white', background: theme.palette.success.dark }}>
-                                    Copied!
+                                    已复制！
                                 </Typography>
                             </Popover>
                         </Stack>
@@ -197,13 +197,13 @@ const APIKeyDialog = ({ show, dialogProps, onCancel, onConfirm }) => {
 
                 <Box sx={{ p: 2 }}>
                     <Stack sx={{ position: 'relative' }} direction='row'>
-                        <Typography variant='overline'>Key Name</Typography>
+                        <Typography variant='overline'>密钥名称</Typography>
                     </Stack>
                     <OutlinedInput
                         id='keyName'
                         type='string'
                         fullWidth
-                        placeholder='My New Key'
+                        placeholder='我的新密钥'
                         value={keyName}
                         name='keyName'
                         onChange={(e) => setKeyName(e.target.value)}

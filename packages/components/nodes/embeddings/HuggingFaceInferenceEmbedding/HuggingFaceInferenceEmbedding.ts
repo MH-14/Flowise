@@ -18,16 +18,16 @@ class HuggingFaceInferenceEmbedding_Embeddings implements INode {
         this.type = 'HuggingFaceInferenceEmbeddings'
         this.icon = 'huggingface.png'
         this.category = 'Embeddings'
-        this.description = 'HuggingFace Inference API to generate embeddings for a given text'
+        this.description = '使用 HuggingFace Inference API 为给定的文本生成嵌入'
         this.baseClasses = [this.type, ...getBaseClasses(HuggingFaceInferenceEmbeddings)]
         this.inputs = [
             {
-                label: 'HuggingFace Api Key',
+                label: 'HuggingFace Api 密钥',
                 name: 'apiKey',
                 type: 'password'
             },
             {
-                label: 'Model',
+                label: '模型',
                 name: 'modelName',
                 type: 'string',
                 optional: true

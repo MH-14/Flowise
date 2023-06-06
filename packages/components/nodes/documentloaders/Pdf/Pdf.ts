@@ -18,32 +18,32 @@ class Pdf_DocumentLoaders implements INode {
         this.type = 'Document'
         this.icon = 'pdf.svg'
         this.category = 'Document Loaders'
-        this.description = `Load data from PDF files`
+        this.description = `从 PDF 文件加载数据`
         this.baseClasses = [this.type]
         this.inputs = [
             {
-                label: 'Pdf File',
+                label: 'Pdf 文件',
                 name: 'pdfFile',
                 type: 'file',
                 fileType: '.pdf'
             },
             {
-                label: 'Text Splitter',
+                label: '文本分割器',
                 name: 'textSplitter',
                 type: 'TextSplitter',
                 optional: true
             },
             {
-                label: 'Usage',
+                label: '使用方式',
                 name: 'usage',
                 type: 'options',
                 options: [
                     {
-                        label: 'One document per page',
+                        label: '每页作为一个文档',
                         name: 'perPage'
                     },
                     {
-                        label: 'One document per file',
+                        label: '整个文件作为一个文档',
                         name: 'perFile'
                     }
                 ],

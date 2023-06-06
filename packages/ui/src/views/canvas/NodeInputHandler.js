@@ -42,8 +42,8 @@ const NodeInputHandler = ({ inputAnchor, inputParam, data, disabled = false, isA
             value,
             inputParam,
             disabled,
-            confirmButtonName: 'Save',
-            cancelButtonName: 'Cancel'
+            confirmButtonName: '保存',
+            cancelButtonName: '取消'
         }
 
         if (!disabled) {
