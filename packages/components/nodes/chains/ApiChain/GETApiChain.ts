@@ -12,7 +12,7 @@ export const API_URL_RAW_PROMPT_TEMPLATE = `给你以下API文档:
 问题: {question}
 API url: `
 
-export const API_RESPONSE_RAW_PROMPT_TEMPLATE = '根据 {api_url} 的请求，得到了 {api_response} 的响应。请使用此响应来回答 {question}。'
+export const API_RESPONSE_RAW_PROMPT_TEMPLATE = '根据 {api_url} 的请求, 得到了 {api_response} 的响应. 请使用此响应来回答 {question}。'
 
 class GETApiChain_Chains implements INode {
     label: string
@@ -47,7 +47,7 @@ class GETApiChain_Chains implements INode {
                 rows: 4
             },
             {
-                label: '头部',
+                label: 'Headers',
                 name: 'headers',
                 type: 'json',
                 additionalParams: true,

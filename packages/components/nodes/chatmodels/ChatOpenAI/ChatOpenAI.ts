@@ -27,7 +27,7 @@ class ChatOpenAI_ChatModels implements INode {
                 type: 'password'
             },
             {
-                label: '模型名称',
+                label: '模型',
                 name: 'modelName',
                 type: 'options',
                 options: [

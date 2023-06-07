@@ -29,8 +29,8 @@ class FewShotPromptTemplate_Prompts implements INode {
                 type: 'string',
                 rows: 4,
                 placeholder: `[
-                    { "词语": "开心", "反义词": "难过" },
-                    { "词语": "高", "反义词": "矮" },
+                    { "word": "开心", "antonym": "难过" },
+                    { "word": "高", "antonym": "矮" },
                 ]`
             },
             {
@@ -39,14 +39,14 @@ class FewShotPromptTemplate_Prompts implements INode {
                 type: 'PromptTemplate'
             },
             {
-                label: '前缀',
+                label: '前置提示',
                 name: 'prefix',
                 type: 'string',
                 rows: 4,
                 placeholder: `为每一个输入给出反义词`
             },
             {
-                label: '后缀',
+                label: '后置提示',
                 name: 'suffix',
                 type: 'string',
                 rows: 4,
