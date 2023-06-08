@@ -98,7 +98,7 @@ const MarketplaceCanvasNode = ({ data }) => {
                                         textAlign: 'center'
                                     }}
                                 >
-                                    Inputs
+                                    输入
                                 </Typography>
                             </Box>
                             <Divider />
@@ -113,7 +113,7 @@ const MarketplaceCanvasNode = ({ data }) => {
                     {data.inputParams.find((param) => param.additionalParams) && (
                         <div style={{ textAlign: 'center' }}>
                             <Button sx={{ borderRadius: 25, width: '90%', mb: 2 }} variant='outlined' onClick={onDialogClicked}>
-                                Additional Parameters
+                                附加参数
                             </Button>
                         </div>
                     )}
@@ -125,7 +125,7 @@ const MarketplaceCanvasNode = ({ data }) => {
                                 textAlign: 'center'
                             }}
                         >
-                            Output
+                            输出
                         </Typography>
                     </Box>
                     <Divider />
