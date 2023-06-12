@@ -151,18 +151,22 @@ export class BabyAGI {
 
     maxIterations = 3
 
+    topK = 4
+
     constructor(
         taskCreationChain: TaskCreationChain,
         taskPrioritizationChain: TaskPrioritizationChain,
         executionChain: ExecutionChain,
         vectorStore: VectorStore,
-        maxIterations: number
+        maxIterations: number,
+        topK: number
     ) {
         this.taskCreationChain = taskCreationChain
         this.taskPrioritizationChain = taskPrioritizationChain
         this.executionChain = executionChain
         this.vectorStore = vectorStore
         this.maxIterations = maxIterations
+        this.topK = topK
     }
 
     addTask(task: Task) {
@@ -216,7 +220,7 @@ export class BabyAGI {
                 this.printNextTask(task)
 
                 // Step 2: Execute the task
-                const result = await executeTask(this.vectorStore, this.executionChain, objective, task.task_name)
+                const result = await executeTask(this.vectorStore, this.executionChain, objective, task.task_name, this.topK)
                 const thisTaskId = task.task_id
                 finalResult = result
                 this.printTaskResult(result)
@@ -254,10 +258,10 @@ export class BabyAGI {
         return finalResult
     }
 
-    static fromLLM(llm: BaseChatModel, vectorstore: VectorStore, maxIterations = 3): BabyAGI {
+    static fromLLM(llm: BaseChatModel, vectorstore: VectorStore, maxIterations = 3, topK = 4): BabyAGI {
         const taskCreationChain = TaskCreationChain.from_llm(llm)
         const taskPrioritizationChain = TaskPrioritizationChain.from_llm(llm)
         const executionChain = ExecutionChain.from_llm(llm)
-        return new BabyAGI(taskCreationChain, taskPrioritizationChain, executionChain, vectorstore, maxIterations)
+        return new BabyAGI(taskCreationChain, taskPrioritizationChain, executionChain, vectorstore, maxIterations, topK)
     }
 }
