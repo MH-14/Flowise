@@ -20,13 +20,13 @@
                 "description": "Wrapper around OpenAI large language models that use the Chat endpoint",
                 "inputParams": [
                     {
-                        "label": "OpenAI Api Key",
+                        "label": "OpenAI Api 密钥",
                         "name": "openAIApiKey",
                         "type": "password",
                         "id": "chatOpenAI_0-input-openAIApiKey-password"
                     },
                     {
-                        "label": "Model Name",
+                        "label": "模型",
                         "name": "modelName",
                         "type": "options",
                         "options": [
@@ -96,7 +96,7 @@
                         "id": "chatOpenAI_0-input-presencePenalty-number"
                     },
                     {
-                        "label": "Timeout",
+                        "label": "超时时间",
                         "name": "timeout",
                         "type": "number",
                         "optional": true,
@@ -151,14 +151,14 @@
                 "description": "Remembers previous conversational back and forths directly",
                 "inputParams": [
                     {
-                        "label": "Memory Key",
+                        "label": "记忆标识",
                         "name": "memoryKey",
                         "type": "string",
                         "default": "chat_history",
                         "id": "bufferMemory_0-input-memoryKey-string"
                     },
                     {
-                        "label": "Input Key",
+                        "label": "输入标识",
                         "name": "inputKey",
                         "type": "string",
                         "default": "input",
@@ -207,7 +207,7 @@
                 "description": "Chat models specific conversational chain with memory",
                 "inputParams": [
                     {
-                        "label": "System Message",
+                        "label": "系统消息",
                         "name": "systemMessagePrompt",
                         "type": "string",
                         "rows": 4,
@@ -219,13 +219,13 @@
                 ],
                 "inputAnchors": [
                     {
-                        "label": "Language Model",
+                        "label": "语言模型",
                         "name": "model",
                         "type": "BaseChatModel",
                         "id": "conversationChain_0-input-model-BaseChatModel"
                     },
                     {
-                        "label": "Memory",
+                        "label": "记忆",
                         "name": "memory",
                         "type": "BaseMemory",
                         "id": "conversationChain_0-input-memory-BaseMemory"

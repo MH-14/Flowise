@@ -20,13 +20,13 @@
                 "description": "Wrapper around OpenAI large language models",
                 "inputParams": [
                     {
-                        "label": "OpenAI Api Key",
+                        "label": "OpenAI Api 密钥",
                         "name": "openAIApiKey",
                         "type": "password",
                         "id": "openAI_1-input-openAIApiKey-password"
                     },
                     {
-                        "label": "Model Name",
+                        "label": "模型",
                         "name": "modelName",
                         "type": "options",
                         "options": [
@@ -108,7 +108,7 @@
                         "id": "openAI_1-input-batchSize-number"
                     },
                     {
-                        "label": "Timeout",
+                        "label": "超时时间",
                         "name": "timeout",
                         "type": "number",
                         "optional": true,
@@ -165,13 +165,13 @@
                 "description": "OpenAI API to generate embeddings for a given text",
                 "inputParams": [
                     {
-                        "label": "OpenAI Api Key",
+                        "label": "OpenAI Api 密钥",
                         "name": "openAIApiKey",
                         "type": "password",
                         "id": "openAIEmbeddings_1-input-openAIApiKey-password"
                     },
                     {
-                        "label": "Strip New Lines",
+                        "label": "去除换行符",
                         "name": "stripNewLines",
                         "type": "boolean",
                         "optional": true,
@@ -187,7 +187,7 @@
                         "id": "openAIEmbeddings_1-input-batchSize-number"
                     },
                     {
-                        "label": "Timeout",
+                        "label": "超时时间",
                         "name": "timeout",
                         "type": "number",
                         "optional": true,
@@ -238,7 +238,7 @@
                 "description": "Load existing index from Pinecone (i.e: Document has been upserted)",
                 "inputParams": [
                     {
-                        "label": "Pinecone Api Key",
+                        "label": "Pinecone Api 密钥",
                         "name": "pineconeApiKey",
                         "type": "password",
                         "id": "pineconeExistingIndex_0-input-pineconeApiKey-password"
@@ -340,7 +340,7 @@
                 "description": "Document QA - built on RetrievalQAChain to provide a chat history component",
                 "inputParams": [
                     {
-                        "label": "System Message",
+                        "label": "系统消息",
                         "name": "systemMessagePrompt",
                         "type": "string",
                         "rows": 4,
@@ -352,13 +352,13 @@
                 ],
                 "inputAnchors": [
                     {
-                        "label": "Language Model",
+                        "label": "语言模型",
                         "name": "model",
                         "type": "BaseLanguageModel",
                         "id": "conversationalRetrievalQAChain_0-input-model-BaseLanguageModel"
                     },
                     {
-                        "label": "Vector Store Retriever",
+                        "label": "向量存储检索器",
                         "name": "vectorStoreRetriever",
                         "type": "BaseRetriever",
                         "id": "conversationalRetrievalQAChain_0-input-vectorStoreRetriever-BaseRetriever"

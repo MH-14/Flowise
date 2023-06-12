@@ -17,10 +17,10 @@
                 "type": "ChatPromptTemplate",
                 "baseClasses": ["ChatPromptTemplate", "BaseChatPromptTemplate", "BasePromptTemplate"],
                 "category": "Prompts",
-                "description": "Schema to represent a chat prompt",
+                "description": "用于表示聊天提示的模式",
                 "inputParams": [
                     {
-                        "label": "System Message",
+                        "label": "系统消息",
                         "name": "systemMessagePrompt",
                         "type": "string",
                         "rows": 4,
@@ -28,7 +28,7 @@
                         "id": "chatPromptTemplate_1-input-systemMessagePrompt-string"
                     },
                     {
-                        "label": "Human Message",
+                        "label": "用户消息",
                         "name": "humanMessagePrompt",
                         "type": "string",
                         "rows": 4,
@@ -36,7 +36,7 @@
                         "id": "chatPromptTemplate_1-input-humanMessagePrompt-string"
                     },
                     {
-                        "label": "Format Prompt Values",
+                        "label": "用于格式化 Prompt(提示) 的值",
                         "name": "promptValues",
                         "type": "string",
                         "rows": 4,
@@ -90,13 +90,13 @@
                 "description": "Wrapper around OpenAI large language models that use the Chat endpoint",
                 "inputParams": [
                     {
-                        "label": "OpenAI Api Key",
+                        "label": "OpenAI Api 密钥",
                         "name": "openAIApiKey",
                         "type": "password",
                         "id": "chatOpenAI_1-input-openAIApiKey-password"
                     },
                     {
-                        "label": "Model Name",
+                        "label": "模型",
                         "name": "modelName",
                         "type": "options",
                         "options": [
@@ -166,7 +166,7 @@
                         "id": "chatOpenAI_1-input-presencePenalty-number"
                     },
                     {
-                        "label": "Timeout",
+                        "label": "超时时间",
                         "name": "timeout",
                         "type": "number",
                         "optional": true,
@@ -221,7 +221,7 @@
                 "description": "Chain to run queries against LLMs",
                 "inputParams": [
                     {
-                        "label": "Chain Name",
+                        "label": "链名称",
                         "name": "chainName",
                         "type": "string",
                         "placeholder": "Name Your Chain",
@@ -231,13 +231,13 @@
                 ],
                 "inputAnchors": [
                     {
-                        "label": "Language Model",
+                        "label": "语言模型",
                         "name": "model",
                         "type": "BaseLanguageModel",
                         "id": "llmChain_1-input-model-BaseLanguageModel"
                     },
                     {
-                        "label": "Prompt",
+                        "label": "Prompt(提示)",
                         "name": "prompt",
                         "type": "BasePromptTemplate",
                         "id": "llmChain_1-input-prompt-BasePromptTemplate"

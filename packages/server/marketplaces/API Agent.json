@@ -1,5 +1,5 @@
 {
-    "description": "Given API docs, agent automatically decide which API to call, generating url and body request from conversation",
+    "description": "根据API文档, 代理程序会自动决定调用哪个API, 并从对话中生成URL和请求体",
     "nodes": [
         {
             "width": 300,
@@ -12,18 +12,22 @@
             "type": "customNode",
             "data": {
                 "id": "getApiChain_0",
-                "label": "GET API Chain",
+                "label": "GET API 链",
                 "name": "getApiChain",
                 "type": "GETApiChain",
-                "baseClasses": ["GETApiChain", "BaseChain", "BaseLangChain"],
+                "baseClasses": [
+                    "GETApiChain",
+                    "BaseChain",
+                    "BaseLangChain"
+                ],
                 "category": "Chains",
-                "description": "Chain to run queries against GET API",
+                "description": "在 GET API 上运行查询的链式操作",
                 "inputParams": [
                     {
-                        "label": "API Documentation",
+                        "label": "API 文档",
                         "name": "apiDocs",
                         "type": "string",
-                        "description": "Description of how API works. Please refer to more <a target=\"_blank\" href=\"https://github.com/hwchase17/langchain/blob/master/langchain/chains/api/open_meteo_docs.py\">examples</a>",
+                        "description": "API 工作原理的描述。请参考 <a target=\"_blank\" href=\"https://github.com/hwchase17/langchain/blob/master/langchain/chains/api/open_meteo_docs.py\">示例</a>",
                         "rows": 4,
                         "id": "getApiChain_0-input-apiDocs-string"
                     },
@@ -36,21 +40,21 @@
                         "id": "getApiChain_0-input-headers-json"
                     },
                     {
-                        "label": "URL Prompt",
+                        "label": "URL Prompt(提示)",
                         "name": "urlPrompt",
                         "type": "string",
-                        "description": "Prompt used to tell LLMs how to construct the URL. Must contains {api_docs} and {question}",
-                        "default": "You are given the below API Documentation:\n{api_docs}\nUsing this documentation, generate the full API url to call for answering the user question.\nYou should build the API url in order to get a response that is as short as possible, while still getting the necessary information to answer the question. Pay attention to deliberately exclude any unnecessary pieces of data in the API call.\n\nQuestion:{question}\nAPI url:",
+                        "description": "用于告诉语言模型如何构建URL的Prompt(提示)。必须包含{api_docs}和{question}",
+                        "default": "给你以下API文档: \n{api_docs}\n使用这份文档, 生成完整的API地址以回答用户的问题.\n你应该构建API url, 以便获得尽可能简短的响应, 同时仍然获取回答问题所需的必要信息。请注意在API调用中刻意排除\n任何不必要的数据片段.\n\n问题: {question}\nAPI url:",
                         "rows": 4,
                         "additionalParams": true,
                         "id": "getApiChain_0-input-urlPrompt-string"
                     },
                     {
-                        "label": "Answer Prompt",
+                        "label": "答案 Prompt(提示)",
                         "name": "ansPrompt",
                         "type": "string",
-                        "description": "Prompt used to tell LLMs how to return the API response. Must contains {api_response}, {api_url}, and {question}",
-                        "default": "Given this {api_response} response for {api_url}. use the given response to answer this {question}",
+                        "description": "用于告诉语言模型如何返回API响应的Prompt(提示)。必须包含{api_response}、{api_url}和{question}",
+                        "default": "根据 {api_url} 的请求, 得到了 {api_response} 的响应. 请使用此响应来回答 {question}",
                         "rows": 4,
                         "additionalParams": true,
                         "id": "getApiChain_0-input-ansPrompt-string"
@@ -58,7 +62,7 @@
                 ],
                 "inputAnchors": [
                     {
-                        "label": "Language Model",
+                        "label": "语言模型",
                         "name": "model",
                         "type": "BaseLanguageModel",
                         "id": "getApiChain_0-input-model-BaseLanguageModel"
@@ -103,12 +107,16 @@
                 "label": "Conversational Agent",
                 "name": "conversationalAgent",
                 "type": "AgentExecutor",
-                "baseClasses": ["AgentExecutor", "BaseChain", "BaseLangChain"],
+                "baseClasses": [
+                    "AgentExecutor",
+                    "BaseChain",
+                    "BaseLangChain"
+                ],
                 "category": "Agents",
-                "description": "Conversational agent for a chat model. It will utilize chat specific prompts",
+                "description": "这是一个用于聊天模型的对话代理程序, 它将使用特定于聊天的提示来进行对话",
                 "inputParams": [
                     {
-                        "label": "System Message",
+                        "label": "系统消息",
                         "name": "systemMessage",
                         "type": "string",
                         "rows": 4,
@@ -117,7 +125,7 @@
                         "id": "conversationalAgent_0-input-systemMessage-string"
                     },
                     {
-                        "label": "Human Message",
+                        "label": "用户消息",
                         "name": "humanMessage",
                         "type": "string",
                         "rows": 4,
@@ -128,27 +136,30 @@
                 ],
                 "inputAnchors": [
                     {
-                        "label": "Allowed Tools",
+                        "label": "允许使用的工具",
                         "name": "tools",
                         "type": "Tool",
                         "list": true,
                         "id": "conversationalAgent_0-input-tools-Tool"
                     },
                     {
-                        "label": "Language Model",
+                        "label": "语言模型",
                         "name": "model",
                         "type": "BaseLanguageModel",
                         "id": "conversationalAgent_0-input-model-BaseLanguageModel"
                     },
                     {
-                        "label": "Memory",
+                        "label": "记忆",
                         "name": "memory",
                         "type": "BaseChatMemory",
                         "id": "conversationalAgent_0-input-memory-BaseChatMemory"
                     }
                 ],
                 "inputs": {
-                    "tools": ["{{chainTool_0.data.instance}}", "{{chainTool_1.data.instance}}"],
+                    "tools": [
+                        "{{chainTool_0.data.instance}}",
+                        "{{chainTool_1.data.instance}}"
+                    ],
                     "model": "{{chatOpenAI_0.data.instance}}",
                     "memory": "{{bufferMemory_0.data.instance}}",
                     "systemMessage": "",
@@ -186,19 +197,25 @@
                 "label": "Chain Tool",
                 "name": "chainTool",
                 "type": "ChainTool",
-                "baseClasses": ["ChainTool", "DynamicTool", "Tool", "StructuredTool", "BaseLangChain"],
+                "baseClasses": [
+                    "ChainTool",
+                    "DynamicTool",
+                    "Tool",
+                    "StructuredTool",
+                    "BaseLangChain"
+                ],
                 "category": "Tools",
                 "description": "Use a chain as allowed tool for agent",
                 "inputParams": [
                     {
-                        "label": "Chain Name",
+                        "label": "链名称",
                         "name": "name",
                         "type": "string",
                         "placeholder": "state-of-union-qa",
                         "id": "chainTool_0-input-name-string"
                     },
                     {
-                        "label": "Chain Description",
+                        "label": "链描述",
                         "name": "description",
                         "type": "string",
                         "rows": 3,
@@ -206,7 +223,7 @@
                         "id": "chainTool_0-input-description-string"
                     },
                     {
-                        "label": "Return Direct",
+                        "label": "直接返回",
                         "name": "returnDirect",
                         "type": "boolean",
                         "optional": true,
@@ -215,7 +232,7 @@
                 ],
                 "inputAnchors": [
                     {
-                        "label": "Base Chain",
+                        "label": "基础链",
                         "name": "baseChain",
                         "type": "BaseChain",
                         "id": "chainTool_0-input-baseChain-BaseChain"
@@ -223,7 +240,7 @@
                 ],
                 "inputs": {
                     "name": "weather-qa",
-                    "description": "useful for when you need to ask question about weather",
+                    "description": "当你想询问天气时很有用",
                     "returnDirect": "",
                     "baseChain": "{{getApiChain_0.data.instance}}"
                 },
@@ -231,7 +248,7 @@
                     {
                         "id": "chainTool_0-output-chainTool-ChainTool|DynamicTool|Tool|StructuredTool|BaseLangChain",
                         "name": "chainTool",
-                        "label": "ChainTool",
+                        "label": "链工具",
                         "type": "ChainTool | DynamicTool | Tool | StructuredTool | BaseLangChain"
                     }
                 ],
@@ -259,18 +276,23 @@
                 "label": "ChatOpenAI",
                 "name": "chatOpenAI",
                 "type": "ChatOpenAI",
-                "baseClasses": ["ChatOpenAI", "BaseChatModel", "BaseLanguageModel", "BaseLangChain"],
+                "baseClasses": [
+                    "ChatOpenAI",
+                    "BaseChatModel",
+                    "BaseLanguageModel",
+                    "BaseLangChain"
+                ],
                 "category": "Chat Models",
                 "description": "Wrapper around OpenAI large language models that use the Chat endpoint",
                 "inputParams": [
                     {
-                        "label": "OpenAI Api Key",
+                        "label": "OpenAI Api 密钥",
                         "name": "openAIApiKey",
                         "type": "password",
                         "id": "chatOpenAI_0-input-openAIApiKey-password"
                     },
                     {
-                        "label": "Model Name",
+                        "label": "模型",
                         "name": "modelName",
                         "type": "options",
                         "options": [
@@ -340,7 +362,7 @@
                         "id": "chatOpenAI_0-input-presencePenalty-number"
                     },
                     {
-                        "label": "Timeout",
+                        "label": "超时时间",
                         "name": "timeout",
                         "type": "number",
                         "optional": true,
@@ -390,19 +412,23 @@
                 "label": "Buffer Memory",
                 "name": "bufferMemory",
                 "type": "BufferMemory",
-                "baseClasses": ["BufferMemory", "BaseChatMemory", "BaseMemory"],
+                "baseClasses": [
+                    "BufferMemory",
+                    "BaseChatMemory",
+                    "BaseMemory"
+                ],
                 "category": "Memory",
                 "description": "Remembers previous conversational back and forths directly",
                 "inputParams": [
                     {
-                        "label": "Memory Key",
+                        "label": "记忆标识",
                         "name": "memoryKey",
                         "type": "string",
                         "default": "chat_history",
                         "id": "bufferMemory_0-input-memoryKey-string"
                     },
                     {
-                        "label": "Input Key",
+                        "label": "输入标识",
                         "name": "inputKey",
                         "type": "string",
                         "default": "input",
@@ -446,18 +472,23 @@
                 "label": "ChatOpenAI",
                 "name": "chatOpenAI",
                 "type": "ChatOpenAI",
-                "baseClasses": ["ChatOpenAI", "BaseChatModel", "BaseLanguageModel", "BaseLangChain"],
+                "baseClasses": [
+                    "ChatOpenAI",
+                    "BaseChatModel",
+                    "BaseLanguageModel",
+                    "BaseLangChain"
+                ],
                 "category": "Chat Models",
                 "description": "Wrapper around OpenAI large language models that use the Chat endpoint",
                 "inputParams": [
                     {
-                        "label": "OpenAI Api Key",
+                        "label": "OpenAI Api 密钥",
                         "name": "openAIApiKey",
                         "type": "password",
                         "id": "chatOpenAI_1-input-openAIApiKey-password"
                     },
                     {
-                        "label": "Model Name",
+                        "label": "模型",
                         "name": "modelName",
                         "type": "options",
                         "options": [
@@ -527,7 +558,7 @@
                         "id": "chatOpenAI_1-input-presencePenalty-number"
                     },
                     {
-                        "label": "Timeout",
+                        "label": "超时时间",
                         "name": "timeout",
                         "type": "number",
                         "optional": true,
@@ -577,18 +608,23 @@
                 "label": "ChatOpenAI",
                 "name": "chatOpenAI",
                 "type": "ChatOpenAI",
-                "baseClasses": ["ChatOpenAI", "BaseChatModel", "BaseLanguageModel", "BaseLangChain"],
+                "baseClasses": [
+                    "ChatOpenAI",
+                    "BaseChatModel",
+                    "BaseLanguageModel",
+                    "BaseLangChain"
+                ],
                 "category": "Chat Models",
                 "description": "Wrapper around OpenAI large language models that use the Chat endpoint",
                 "inputParams": [
                     {
-                        "label": "OpenAI Api Key",
+                        "label": "OpenAI Api 密钥",
                         "name": "openAIApiKey",
                         "type": "password",
                         "id": "chatOpenAI_2-input-openAIApiKey-password"
                     },
                     {
-                        "label": "Model Name",
+                        "label": "模型",
                         "name": "modelName",
                         "type": "options",
                         "options": [
@@ -658,7 +694,7 @@
                         "id": "chatOpenAI_2-input-presencePenalty-number"
                     },
                     {
-                        "label": "Timeout",
+                        "label": "超时时间",
                         "name": "timeout",
                         "type": "number",
                         "optional": true,
@@ -708,19 +744,25 @@
                 "label": "Chain Tool",
                 "name": "chainTool",
                 "type": "ChainTool",
-                "baseClasses": ["ChainTool", "DynamicTool", "Tool", "StructuredTool", "BaseLangChain"],
+                "baseClasses": [
+                    "ChainTool",
+                    "DynamicTool",
+                    "Tool",
+                    "StructuredTool",
+                    "BaseLangChain"
+                ],
                 "category": "Tools",
                 "description": "Use a chain as allowed tool for agent",
                 "inputParams": [
                     {
-                        "label": "Chain Name",
+                        "label": "链名称",
                         "name": "name",
                         "type": "string",
                         "placeholder": "state-of-union-qa",
                         "id": "chainTool_1-input-name-string"
                     },
                     {
-                        "label": "Chain Description",
+                        "label": "链描述",
                         "name": "description",
                         "type": "string",
                         "rows": 3,
@@ -728,7 +770,7 @@
                         "id": "chainTool_1-input-description-string"
                     },
                     {
-                        "label": "Return Direct",
+                        "label": "直接返回",
                         "name": "returnDirect",
                         "type": "boolean",
                         "optional": true,
@@ -737,7 +779,7 @@
                 ],
                 "inputAnchors": [
                     {
-                        "label": "Base Chain",
+                        "label": "基础链",
                         "name": "baseChain",
                         "type": "BaseChain",
                         "id": "chainTool_1-input-baseChain-BaseChain"
@@ -745,7 +787,7 @@
                 ],
                 "inputs": {
                     "name": "discord-bot",
-                    "description": "useful for when you need to send message to Discord",
+                    "description": "在你想要向 Discord 发送消息时非常有用",
                     "returnDirect": "",
                     "baseChain": "{{postApiChain_0.data.instance}}"
                 },
@@ -753,7 +795,7 @@
                     {
                         "id": "chainTool_1-output-chainTool-ChainTool|DynamicTool|Tool|StructuredTool|BaseLangChain",
                         "name": "chainTool",
-                        "label": "ChainTool",
+                        "label": "链工具",
                         "type": "ChainTool | DynamicTool | Tool | StructuredTool | BaseLangChain"
                     }
                 ],
@@ -781,12 +823,16 @@
                 "label": "POST API Chain",
                 "name": "postApiChain",
                 "type": "POSTApiChain",
-                "baseClasses": ["POSTApiChain", "BaseChain", "BaseLangChain"],
+                "baseClasses": [
+                    "POSTApiChain",
+                    "BaseChain",
+                    "BaseLangChain"
+                ],
                 "category": "Chains",
-                "description": "Chain to run queries against POST API",
+                "description": "在 POST API 上运行查询的链式操作",
                 "inputParams": [
                     {
-                        "label": "API Documentation",
+                        "label": "API 文档",
                         "name": "apiDocs",
                         "type": "string",
                         "description": "Description of how API works. Please refer to more <a target=\"_blank\" href=\"https://github.com/hwchase17/langchain/blob/master/langchain/chains/api/open_meteo_docs.py\">examples</a>",
@@ -824,7 +870,7 @@
                 ],
                 "inputAnchors": [
                     {
-                        "label": "Language Model",
+                        "label": "语言模型",
                         "name": "model",
                         "type": "BaseLanguageModel",
                         "id": "postApiChain_0-input-model-BaseLanguageModel"

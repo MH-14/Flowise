@@ -1,5 +1,5 @@
 {
-    "description": "Output antonym of given user input using few-shot prompt template built with examples",
+    "description": "将用户输入的词语的反义词输出，使用基于示例构建的 few-shot prompt 模板",
     "nodes": [
         {
             "width": 300,
@@ -12,23 +12,27 @@
             "type": "customNode",
             "data": {
                 "id": "promptTemplate_1",
-                "label": "Prompt Template",
+                "label": "提示模板",
                 "name": "promptTemplate",
                 "type": "PromptTemplate",
-                "baseClasses": ["PromptTemplate", "BaseStringPromptTemplate", "BasePromptTemplate"],
+                "baseClasses": [
+                    "PromptTemplate",
+                    "BaseStringPromptTemplate",
+                    "BasePromptTemplate"
+                ],
                 "category": "Prompts",
-                "description": "Schema to represent a basic prompt for an LLM",
+                "description": "用于表示 LLM 基本提示的模式",
                 "inputParams": [
                     {
-                        "label": "Template",
+                        "label": "模板",
                         "name": "template",
                         "type": "string",
                         "rows": 4,
-                        "placeholder": "What is a good name for a company that makes {product}?",
+                        "placeholder": "一个制造 {product} 的公司，应该取什么好名字？",
                         "id": "promptTemplate_1-input-template-string"
                     },
                     {
-                        "label": "Format Prompt Values",
+                        "label": "用于格式化 Prompt(提示) 的值",
                         "name": "promptValues",
                         "type": "string",
                         "rows": 4,
@@ -41,14 +45,14 @@
                 ],
                 "inputAnchors": [],
                 "inputs": {
-                    "template": "Word: {word}\\nAntonym: {antonym}\\n",
+                    "template": "词语: {word}\\n反义词: {antonym}\\n",
                     "promptValues": ""
                 },
                 "outputAnchors": [
                     {
                         "id": "promptTemplate_1-output-promptTemplate-PromptTemplate|BaseStringPromptTemplate|BasePromptTemplate",
                         "name": "promptTemplate",
-                        "label": "PromptTemplate",
+                        "label": "提示模板",
                         "type": "PromptTemplate | BaseStringPromptTemplate | BasePromptTemplate"
                     }
                 ],
@@ -73,15 +77,19 @@
             "type": "customNode",
             "data": {
                 "id": "fewShotPromptTemplate_1",
-                "label": "Few Shot Prompt Template",
+                "label": "少样本提示模板",
                 "name": "fewShotPromptTemplate",
                 "type": "FewShotPromptTemplate",
-                "baseClasses": ["FewShotPromptTemplate", "BaseStringPromptTemplate", "BasePromptTemplate"],
+                "baseClasses": [
+                    "FewShotPromptTemplate",
+                    "BaseStringPromptTemplate",
+                    "BasePromptTemplate"
+                ],
                 "category": "Prompts",
-                "description": "Prompt template you can build with examples",
+                "description": "你可以根据示例构建提示模板",
                 "inputParams": [
                     {
-                        "label": "Examples",
+                        "label": "示例",
                         "name": "examples",
                         "type": "string",
                         "rows": 4,
@@ -89,30 +97,30 @@
                         "id": "fewShotPromptTemplate_1-input-examples-string"
                     },
                     {
-                        "label": "Prefix",
+                        "label": "前缀",
                         "name": "prefix",
                         "type": "string",
                         "rows": 4,
-                        "placeholder": "Give the antonym of every input",
+                        "placeholder": "提供每个输入词语的反义词",
                         "id": "fewShotPromptTemplate_1-input-prefix-string"
                     },
                     {
-                        "label": "Suffix",
+                        "label": "后缀",
                         "name": "suffix",
                         "type": "string",
                         "rows": 4,
-                        "placeholder": "Word: {input}\nAntonym:",
+                        "placeholder": "词语: {input}\n反义词:",
                         "id": "fewShotPromptTemplate_1-input-suffix-string"
                     },
                     {
-                        "label": "Example Seperator",
+                        "label": "分割符示例",
                         "name": "exampleSeparator",
                         "type": "string",
                         "placeholder": "\n\n",
                         "id": "fewShotPromptTemplate_1-input-exampleSeparator-string"
                     },
                     {
-                        "label": "Template Format",
+                        "label": "格式化模板",
                         "name": "templateFormat",
                         "type": "options",
                         "options": [
@@ -131,17 +139,17 @@
                 ],
                 "inputAnchors": [
                     {
-                        "label": "Example Prompt",
+                        "label": "提示词示例",
                         "name": "examplePrompt",
                         "type": "PromptTemplate",
                         "id": "fewShotPromptTemplate_1-input-examplePrompt-PromptTemplate"
                     }
                 ],
                 "inputs": {
-                    "examples": "[\n  { \"word\": \"happy\", \"antonym\": \"sad\" },\n  { \"word\": \"tall\", \"antonym\": \"short\" }\n]",
+                    "examples": "[\n  { \"word\": \"开心\", \"antonym\": \"难过\" },\n  { \"word\": \"高\", \"antonym\": \"矮\" }\n]",
                     "examplePrompt": "{{promptTemplate_1.data.instance}}",
                     "prefix": "Give the antonym of every input",
-                    "suffix": "Word: {input}\\nAntonym:",
+                    "suffix": "词语: {input}\\n反义词:",
                     "exampleSeparator": "\\n\\n",
                     "templateFormat": "f-string"
                 },
@@ -177,18 +185,23 @@
                 "label": "OpenAI",
                 "name": "openAI",
                 "type": "OpenAI",
-                "baseClasses": ["OpenAI", "BaseLLM", "BaseLanguageModel", "BaseLangChain"],
+                "baseClasses": [
+                    "OpenAI",
+                    "BaseLLM",
+                    "BaseLanguageModel",
+                    "BaseLangChain"
+                ],
                 "category": "LLMs",
                 "description": "Wrapper around OpenAI large language models",
                 "inputParams": [
                     {
-                        "label": "OpenAI Api Key",
+                        "label": "OpenAI Api 密钥",
                         "name": "openAIApiKey",
                         "type": "password",
                         "id": "openAI_1-input-openAIApiKey-password"
                     },
                     {
-                        "label": "Model Name",
+                        "label": "模型",
                         "name": "modelName",
                         "type": "options",
                         "options": [
@@ -270,7 +283,7 @@
                         "id": "openAI_1-input-batchSize-number"
                     },
                     {
-                        "label": "Timeout",
+                        "label": "超时时间",
                         "name": "timeout",
                         "type": "number",
                         "optional": true,
@@ -322,12 +335,16 @@
                 "label": "LLM Chain",
                 "name": "llmChain",
                 "type": "LLMChain",
-                "baseClasses": ["LLMChain", "BaseChain", "BaseLangChain"],
+                "baseClasses": [
+                    "LLMChain",
+                    "BaseChain",
+                    "BaseLangChain"
+                ],
                 "category": "Chains",
                 "description": "Chain to run queries against LLMs",
                 "inputParams": [
                     {
-                        "label": "Chain Name",
+                        "label": "链名称",
                         "name": "chainName",
                         "type": "string",
                         "placeholder": "Name Your Chain",
@@ -337,13 +354,13 @@
                 ],
                 "inputAnchors": [
                     {
-                        "label": "Language Model",
+                        "label": "语言模型",
                         "name": "model",
                         "type": "BaseLanguageModel",
                         "id": "llmChain_1-input-model-BaseLanguageModel"
                     },
                     {
-                        "label": "Prompt",
+                        "label": "Prompt(提示)",
                         "name": "prompt",
                         "type": "BasePromptTemplate",
                         "id": "llmChain_1-input-prompt-BasePromptTemplate"

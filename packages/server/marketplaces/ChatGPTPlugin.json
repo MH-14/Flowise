@@ -219,14 +219,14 @@
                 "inputParams": [],
                 "inputAnchors": [
                     {
-                        "label": "Allowed Tools",
+                        "label": "允许使用的工具",
                         "name": "tools",
                         "type": "Tool",
                         "list": true,
                         "id": "mrklAgentChat_0-input-tools-Tool"
                     },
                     {
-                        "label": "Language Model",
+                        "label": "语言模型",
                         "name": "model",
                         "type": "BaseLanguageModel",
                         "id": "mrklAgentChat_0-input-model-BaseLanguageModel"
@@ -273,13 +273,13 @@
                 "description": "Wrapper around OpenAI large language models that use the Chat endpoint",
                 "inputParams": [
                     {
-                        "label": "OpenAI Api Key",
+                        "label": "OpenAI Api 密钥",
                         "name": "openAIApiKey",
                         "type": "password",
                         "id": "chatOpenAI_0-input-openAIApiKey-password"
                     },
                     {
-                        "label": "Model Name",
+                        "label": "模型",
                         "name": "modelName",
                         "type": "options",
                         "options": [
@@ -349,7 +349,7 @@
                         "id": "chatOpenAI_0-input-presencePenalty-number"
                     },
                     {
-                        "label": "Timeout",
+                        "label": "超时时间",
                         "name": "timeout",
                         "type": "number",
                         "optional": true,

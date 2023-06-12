@@ -20,13 +20,13 @@
                 "description": "Wrapper around OpenAI large language models",
                 "inputParams": [
                     {
-                        "label": "OpenAI Api Key",
+                        "label": "OpenAI Api 密钥",
                         "name": "openAIApiKey",
                         "type": "password",
                         "id": "openAI_1-input-openAIApiKey-password"
                     },
                     {
-                        "label": "Model Name",
+                        "label": "模型",
                         "name": "modelName",
                         "type": "options",
                         "options": [
@@ -108,7 +108,7 @@
                         "id": "openAI_1-input-batchSize-number"
                     },
                     {
-                        "label": "Timeout",
+                        "label": "超时时间",
                         "name": "timeout",
                         "type": "number",
                         "optional": true,
@@ -157,23 +157,23 @@
             "type": "customNode",
             "data": {
                 "id": "promptTemplate_1",
-                "label": "Prompt Template",
+                "label": "提示模板",
                 "name": "promptTemplate",
                 "type": "PromptTemplate",
                 "baseClasses": ["PromptTemplate", "BaseStringPromptTemplate", "BasePromptTemplate"],
                 "category": "Prompts",
-                "description": "Schema to represent a basic prompt for an LLM",
+                "description": "用于表示 LLM 基本提示的模式",
                 "inputParams": [
                     {
                         "label": "Template",
                         "name": "template",
                         "type": "string",
                         "rows": 4,
-                        "placeholder": "What is a good name for a company that makes {product}?",
+                        "placeholder": "一个制造 {product} 的公司，应该取什么好名字？",
                         "id": "promptTemplate_1-input-template-string"
                     },
                     {
-                        "label": "Format Prompt Values",
+                        "label": "用于格式化 Prompt(提示) 的值",
                         "name": "promptValues",
                         "type": "string",
                         "rows": 4,
@@ -226,7 +226,7 @@
                 "description": "Chain to run queries against LLMs",
                 "inputParams": [
                     {
-                        "label": "Chain Name",
+                        "label": "链名称",
                         "name": "chainName",
                         "type": "string",
                         "placeholder": "Name Your Chain",
@@ -236,13 +236,13 @@
                 ],
                 "inputAnchors": [
                     {
-                        "label": "Language Model",
+                        "label": "语言模型",
                         "name": "model",
                         "type": "BaseLanguageModel",
                         "id": "llmChain_1-input-model-BaseLanguageModel"
                     },
                     {
-                        "label": "Prompt",
+                        "label": "Prompt(提示)",
                         "name": "prompt",
                         "type": "BasePromptTemplate",
                         "id": "llmChain_1-input-prompt-BasePromptTemplate"

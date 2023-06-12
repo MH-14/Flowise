@@ -1,5 +1,5 @@
 {
-    "description": "Use BabyAGI to create tasks and reprioritize for a given objective",
+    "description": "使用BabyAGI创建任务并根据给定目标重新排序",
     "nodes": [
         {
             "width": 300,
@@ -15,18 +15,21 @@
                 "label": "OpenAI Embeddings",
                 "name": "openAIEmbeddings",
                 "type": "OpenAIEmbeddings",
-                "baseClasses": ["OpenAIEmbeddings", "Embeddings"],
+                "baseClasses": [
+                    "OpenAIEmbeddings",
+                    "Embeddings"
+                ],
                 "category": "Embeddings",
                 "description": "OpenAI API to generate embeddings for a given text",
                 "inputParams": [
                     {
-                        "label": "OpenAI Api Key",
+                        "label": "OpenAI Api 密钥",
                         "name": "openAIApiKey",
                         "type": "password",
                         "id": "openAIEmbeddings_1-input-openAIApiKey-password"
                     },
                     {
-                        "label": "Strip New Lines",
+                        "label": "去除换行符",
                         "name": "stripNewLines",
                         "type": "boolean",
                         "optional": true,
@@ -42,7 +45,7 @@
                         "id": "openAIEmbeddings_1-input-batchSize-number"
                     },
                     {
-                        "label": "Timeout",
+                        "label": "超时时间",
                         "name": "timeout",
                         "type": "number",
                         "optional": true,
@@ -88,12 +91,16 @@
                 "label": "Pinecone Load Existing Index",
                 "name": "pineconeExistingIndex",
                 "type": "Pinecone",
-                "baseClasses": ["Pinecone", "VectorStoreRetriever", "BaseRetriever"],
+                "baseClasses": [
+                    "Pinecone",
+                    "VectorStoreRetriever",
+                    "BaseRetriever"
+                ],
                 "category": "Vector Stores",
                 "description": "Load existing index from Pinecone (i.e: Document has been upserted)",
                 "inputParams": [
                     {
-                        "label": "Pinecone Api Key",
+                        "label": "Pinecone Api 密钥",
                         "name": "pineconeApiKey",
                         "type": "password",
                         "id": "pineconeExistingIndex_1-input-pineconeApiKey-password"
@@ -129,7 +136,7 @@
                 ],
                 "inputAnchors": [
                     {
-                        "label": "Embeddings",
+                        "label": "嵌入向量",
                         "name": "embeddings",
                         "type": "Embeddings",
                         "id": "pineconeExistingIndex_1-input-embeddings-Embeddings"
@@ -144,7 +151,7 @@
                 "outputAnchors": [
                     {
                         "name": "output",
-                        "label": "Output",
+                        "label": "输出",
                         "type": "options",
                         "options": [
                             {
@@ -189,18 +196,23 @@
                 "label": "ChatOpenAI",
                 "name": "chatOpenAI",
                 "type": "ChatOpenAI",
-                "baseClasses": ["ChatOpenAI", "BaseChatModel", "BaseLanguageModel", "BaseLangChain"],
+                "baseClasses": [
+                    "ChatOpenAI",
+                    "BaseChatModel",
+                    "BaseLanguageModel",
+                    "BaseLangChain"
+                ],
                 "category": "Chat Models",
                 "description": "Wrapper around OpenAI large language models that use the Chat endpoint",
                 "inputParams": [
                     {
-                        "label": "OpenAI Api Key",
+                        "label": "OpenAI Api 密钥",
                         "name": "openAIApiKey",
                         "type": "password",
                         "id": "chatOpenAI_1-input-openAIApiKey-password"
                     },
                     {
-                        "label": "Model Name",
+                        "label": "模型",
                         "name": "modelName",
                         "type": "options",
                         "options": [
@@ -270,7 +282,7 @@
                         "id": "chatOpenAI_1-input-presencePenalty-number"
                     },
                     {
-                        "label": "Timeout",
+                        "label": "超时时间",
                         "name": "timeout",
                         "type": "number",
                         "optional": true,
@@ -320,12 +332,14 @@
                 "label": "BabyAGI",
                 "name": "babyAGI",
                 "type": "BabyAGI",
-                "baseClasses": ["BabyAGI"],
+                "baseClasses": [
+                    "BabyAGI"
+                ],
                 "category": "Agents",
                 "description": "Task Driven Autonomous Agent which creates new task and reprioritizes task list based on objective",
                 "inputParams": [
                     {
-                        "label": "Task Loop",
+                        "label": "任务循环",
                         "name": "taskLoop",
                         "type": "number",
                         "default": 3,
@@ -334,13 +348,13 @@
                 ],
                 "inputAnchors": [
                     {
-                        "label": "Chat Model",
+                        "label": "Chat 模型",
                         "name": "model",
                         "type": "BaseChatModel",
                         "id": "babyAGI_1-input-model-BaseChatModel"
                     },
                     {
-                        "label": "Vector Store",
+                        "label": "向量存储",
                         "name": "vectorStore",
                         "type": "VectorStore",
                         "id": "babyAGI_1-input-vectorStore-VectorStore"

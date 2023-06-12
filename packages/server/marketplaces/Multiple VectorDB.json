@@ -20,13 +20,13 @@
                 "description": "OpenAI API to generate embeddings for a given text",
                 "inputParams": [
                     {
-                        "label": "OpenAI Api Key",
+                        "label": "OpenAI Api 密钥",
                         "name": "openAIApiKey",
                         "type": "password",
                         "id": "openAIEmbeddings_2-input-openAIApiKey-password"
                     },
                     {
-                        "label": "Strip New Lines",
+                        "label": "去除换行符",
                         "name": "stripNewLines",
                         "type": "boolean",
                         "optional": true,
@@ -42,7 +42,7 @@
                         "id": "openAIEmbeddings_2-input-batchSize-number"
                     },
                     {
-                        "label": "Timeout",
+                        "label": "超时时间",
                         "name": "timeout",
                         "type": "number",
                         "optional": true,
@@ -164,13 +164,13 @@
                 "description": "Wrapper around OpenAI large language models",
                 "inputParams": [
                     {
-                        "label": "OpenAI Api Key",
+                        "label": "OpenAI Api 密钥",
                         "name": "openAIApiKey",
                         "type": "password",
                         "id": "openAI_3-input-openAIApiKey-password"
                     },
                     {
-                        "label": "Model Name",
+                        "label": "模型",
                         "name": "modelName",
                         "type": "options",
                         "options": [
@@ -252,7 +252,7 @@
                         "id": "openAI_3-input-batchSize-number"
                     },
                     {
-                        "label": "Timeout",
+                        "label": "超时时间",
                         "name": "timeout",
                         "type": "number",
                         "optional": true,
@@ -310,7 +310,7 @@
                 "inputParams": [],
                 "inputAnchors": [
                     {
-                        "label": "Language Model",
+                        "label": "语言模型",
                         "name": "model",
                         "type": "BaseLanguageModel",
                         "id": "vectorDBQAChain_2-input-model-BaseLanguageModel"
@@ -363,14 +363,14 @@
                 "description": "Use a chain as allowed tool for agent",
                 "inputParams": [
                     {
-                        "label": "Chain Name",
+                        "label": "链名称",
                         "name": "name",
                         "type": "string",
                         "placeholder": "state-of-union-qa",
                         "id": "chainTool_2-input-name-string"
                     },
                     {
-                        "label": "Chain Description",
+                        "label": "链描述",
                         "name": "description",
                         "type": "string",
                         "rows": 3,
@@ -378,7 +378,7 @@
                         "id": "chainTool_2-input-description-string"
                     },
                     {
-                        "label": "Return Direct",
+                        "label": "直接返回",
                         "name": "returnDirect",
                         "type": "boolean",
                         "optional": true,
@@ -387,7 +387,7 @@
                 ],
                 "inputAnchors": [
                     {
-                        "label": "Base Chain",
+                        "label": "基础链",
                         "name": "baseChain",
                         "type": "BaseChain",
                         "id": "chainTool_2-input-baseChain-BaseChain"
@@ -403,7 +403,7 @@
                     {
                         "id": "chainTool_2-output-chainTool-ChainTool|DynamicTool|Tool|StructuredTool|BaseLangChain",
                         "name": "chainTool",
-                        "label": "ChainTool",
+                        "label": "链工具",
                         "type": "ChainTool | DynamicTool | Tool | StructuredTool | BaseLangChain"
                     }
                 ],
@@ -519,13 +519,13 @@
                 "description": "OpenAI API to generate embeddings for a given text",
                 "inputParams": [
                     {
-                        "label": "OpenAI Api Key",
+                        "label": "OpenAI Api 密钥",
                         "name": "openAIApiKey",
                         "type": "password",
                         "id": "openAIEmbeddings_3-input-openAIApiKey-password"
                     },
                     {
-                        "label": "Strip New Lines",
+                        "label": "去除换行符",
                         "name": "stripNewLines",
                         "type": "boolean",
                         "optional": true,
@@ -541,7 +541,7 @@
                         "id": "openAIEmbeddings_3-input-batchSize-number"
                     },
                     {
-                        "label": "Timeout",
+                        "label": "超时时间",
                         "name": "timeout",
                         "type": "number",
                         "optional": true,
@@ -592,13 +592,13 @@
                 "description": "Wrapper around OpenAI large language models",
                 "inputParams": [
                     {
-                        "label": "OpenAI Api Key",
+                        "label": "OpenAI Api 密钥",
                         "name": "openAIApiKey",
                         "type": "password",
                         "id": "openAI_4-input-openAIApiKey-password"
                     },
                     {
-                        "label": "Model Name",
+                        "label": "模型",
                         "name": "modelName",
                         "type": "options",
                         "options": [
@@ -680,7 +680,7 @@
                         "id": "openAI_4-input-batchSize-number"
                     },
                     {
-                        "label": "Timeout",
+                        "label": "超时时间",
                         "name": "timeout",
                         "type": "number",
                         "optional": true,
@@ -737,7 +737,7 @@
                 "description": "Load existing index from Pinecone (i.e: Document has been upserted)",
                 "inputParams": [
                     {
-                        "label": "Pinecone Api Key",
+                        "label": "Pinecone Api 密钥",
                         "name": "pineconeApiKey",
                         "type": "password",
                         "id": "pineconeExistingIndex_1-input-pineconeApiKey-password"
@@ -839,7 +839,7 @@
                 "inputParams": [],
                 "inputAnchors": [
                     {
-                        "label": "Language Model",
+                        "label": "语言模型",
                         "name": "model",
                         "type": "BaseLanguageModel",
                         "id": "vectorDBQAChain_3-input-model-BaseLanguageModel"
@@ -892,14 +892,14 @@
                 "description": "Use a chain as allowed tool for agent",
                 "inputParams": [
                     {
-                        "label": "Chain Name",
+                        "label": "链名称",
                         "name": "name",
                         "type": "string",
                         "placeholder": "state-of-union-qa",
                         "id": "chainTool_3-input-name-string"
                     },
                     {
-                        "label": "Chain Description",
+                        "label": "链描述",
                         "name": "description",
                         "type": "string",
                         "rows": 3,
@@ -907,7 +907,7 @@
                         "id": "chainTool_3-input-description-string"
                     },
                     {
-                        "label": "Return Direct",
+                        "label": "直接返回",
                         "name": "returnDirect",
                         "type": "boolean",
                         "optional": true,
@@ -916,7 +916,7 @@
                 ],
                 "inputAnchors": [
                     {
-                        "label": "Base Chain",
+                        "label": "基础链",
                         "name": "baseChain",
                         "type": "BaseChain",
                         "id": "chainTool_3-input-baseChain-BaseChain"
@@ -932,7 +932,7 @@
                     {
                         "id": "chainTool_3-output-chainTool-ChainTool|DynamicTool|Tool|StructuredTool|BaseLangChain",
                         "name": "chainTool",
-                        "label": "ChainTool",
+                        "label": "链工具",
                         "type": "ChainTool | DynamicTool | Tool | StructuredTool | BaseLangChain"
                     }
                 ],
@@ -965,13 +965,13 @@
                 "description": "Wrapper around OpenAI large language models",
                 "inputParams": [
                     {
-                        "label": "OpenAI Api Key",
+                        "label": "OpenAI Api 密钥",
                         "name": "openAIApiKey",
                         "type": "password",
                         "id": "openAI_5-input-openAIApiKey-password"
                     },
                     {
-                        "label": "Model Name",
+                        "label": "模型",
                         "name": "modelName",
                         "type": "options",
                         "options": [
@@ -1053,7 +1053,7 @@
                         "id": "openAI_5-input-batchSize-number"
                     },
                     {
-                        "label": "Timeout",
+                        "label": "超时时间",
                         "name": "timeout",
                         "type": "number",
                         "optional": true,
@@ -1111,14 +1111,14 @@
                 "inputParams": [],
                 "inputAnchors": [
                     {
-                        "label": "Allowed Tools",
+                        "label": "允许使用的工具",
                         "name": "tools",
                         "type": "Tool",
                         "list": true,
                         "id": "mrklAgentLLM_0-input-tools-Tool"
                     },
                     {
-                        "label": "Language Model",
+                        "label": "语言模型",
                         "name": "model",
                         "type": "BaseLanguageModel",
                         "id": "mrklAgentLLM_0-input-model-BaseLanguageModel"

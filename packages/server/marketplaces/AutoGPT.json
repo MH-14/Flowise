@@ -1,5 +1,5 @@
 {
-    "description": "Use AutoGPT - Autonomous agent with chain of thoughts for self-guided task completion",
+    "description": "使用AutoGPT - 自主思考链式智能体来完成自主任务",
     "nodes": [
         {
             "width": 300,
@@ -20,7 +20,7 @@
                 "description": "Autonomous agent with chain of thoughts by GPT4",
                 "inputParams": [
                     {
-                        "label": "AutoGPT Name",
+                        "label": "AutoGPT 名称",
                         "name": "aiName",
                         "type": "string",
                         "placeholder": "Tom",
@@ -28,7 +28,7 @@
                         "id": "autoGPT_0-input-aiName-string"
                     },
                     {
-                        "label": "AutoGPT Role",
+                        "label": "AutoGPT 角色",
                         "name": "aiRole",
                         "type": "string",
                         "placeholder": "Assistant",
@@ -36,7 +36,7 @@
                         "id": "autoGPT_0-input-aiRole-string"
                     },
                     {
-                        "label": "Maximum Loop",
+                        "label": "最大循环次数",
                         "name": "maxLoop",
                         "type": "number",
                         "default": 5,
@@ -46,20 +46,20 @@
                 ],
                 "inputAnchors": [
                     {
-                        "label": "Allowed Tools",
+                        "label": "允许使用的工具",
                         "name": "tools",
                         "type": "Tool",
                         "list": true,
                         "id": "autoGPT_0-input-tools-Tool"
                     },
                     {
-                        "label": "Chat Model",
+                        "label": "Chat 模型",
                         "name": "model",
                         "type": "BaseChatModel",
                         "id": "autoGPT_0-input-model-BaseChatModel"
                     },
                     {
-                        "label": "Vector Store Retriever",
+                        "label": "向量存储检索器",
                         "name": "vectorStoreRetriever",
                         "type": "BaseRetriever",
                         "id": "autoGPT_0-input-vectorStoreRetriever-BaseRetriever"
@@ -110,13 +110,13 @@
                 "description": "Wrapper around OpenAI large language models that use the Chat endpoint",
                 "inputParams": [
                     {
-                        "label": "OpenAI Api Key",
+                        "label": "OpenAI Api 密钥",
                         "name": "openAIApiKey",
                         "type": "password",
                         "id": "chatOpenAI_1-input-openAIApiKey-password"
                     },
                     {
-                        "label": "Model Name",
+                        "label": "模型",
                         "name": "modelName",
                         "type": "options",
                         "options": [
@@ -186,7 +186,7 @@
                         "id": "chatOpenAI_1-input-presencePenalty-number"
                     },
                     {
-                        "label": "Timeout",
+                        "label": "超时时间",
                         "name": "timeout",
                         "type": "number",
                         "optional": true,
@@ -384,13 +384,13 @@
                 "description": "OpenAI API to generate embeddings for a given text",
                 "inputParams": [
                     {
-                        "label": "OpenAI Api Key",
+                        "label": "OpenAI Api 密钥",
                         "name": "openAIApiKey",
                         "type": "password",
                         "id": "openAIEmbeddings_0-input-openAIApiKey-password"
                     },
                     {
-                        "label": "Strip New Lines",
+                        "label": "去除换行符",
                         "name": "stripNewLines",
                         "type": "boolean",
                         "optional": true,
@@ -406,7 +406,7 @@
                         "id": "openAIEmbeddings_0-input-batchSize-number"
                     },
                     {
-                        "label": "Timeout",
+                        "label": "超时时间",
                         "name": "timeout",
                         "type": "number",
                         "optional": true,
@@ -457,7 +457,7 @@
                 "description": "Load existing index from Pinecone (i.e: Document has been upserted)",
                 "inputParams": [
                     {
-                        "label": "Pinecone Api Key",
+                        "label": "Pinecone Api 密钥",
                         "name": "pineconeApiKey",
                         "type": "password",
                         "id": "pineconeExistingIndex_1-input-pineconeApiKey-password"
