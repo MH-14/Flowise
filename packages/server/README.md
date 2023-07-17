@@ -1,10 +1,10 @@
 <!-- markdownlint-disable MD030 -->
 
-# Flowise - LangchainJS UI
+# Flowise - Low-Code LLM apps builder
 
 ![Flowise](https://github.com/FlowiseAI/Flowise/blob/main/images/flowise.gif?raw=true)
 
-Drag & drop UI to build your customized LLM flow using [LangchainJS](https://github.com/hwchase17/langchainjs)
+Drag & drop UI to build your customized LLM flow
 
 ## ⚡Quick Start
 
@@ -29,15 +29,51 @@ FLOWISE_USERNAME=user
 FLOWISE_PASSWORD=1234
 ```
 
+## 🌱 Env Variables
+
+Flowise support different environment variables to configure your instance. You can specify the following variables in the `.env` file inside `packages/server` folder.
+
+| Variable         | Description                                                      | Type                                             | Default                             |
+| ---------------- | ---------------------------------------------------------------- | ------------------------------------------------ | ----------------------------------- |
+| PORT             | The HTTP port Flowise runs on                                    | Number                                           | 3000                                |
+| FLOWISE_USERNAME | Username to login                                                | String                                           |
+| FLOWISE_PASSWORD | Password to login                                                | String                                           |
+| DEBUG            | Print logs from components                                       | Boolean                                          |
+| LOG_PATH         | Location where log files are stored                              | String                                           | `your-path/Flowise/logs`            |
+| LOG_LEVEL        | Different levels of logs                                         | Enum String: `error`, `info`, `verbose`, `debug` | `info`                              |
+| DATABASE_PATH    | Location where database is saved                                 | String                                           | `your-home-dir/.flowise`            |
+| APIKEY_PATH      | Location where api keys are saved                                | String                                           | `your-path/Flowise/packages/server` |
+| EXECUTION_MODE   | Whether predictions run in their own process or the main process | Enum String: `child`, `main`                     | `main`                              |
+
+You can also specify the env variables when using `npx`. For example:
+
+```
+npx flowise start --PORT=3000 --DEBUG=true
+```
+
 ## 📖 Documentation
 
-Coming Soon
-
-## 💻 Cloud Hosted
-
-Coming Soon
+[Flowise Docs](https://docs.flowiseai.com/)
 
 ## 🌐 Self Host
+
+### [Railway](https://docs.flowiseai.com/deployment/railway)
+
+[![Deploy on Railway](https://railway.app/button.svg)](https://railway.app/template/YK7J0v)
+
+### [Render](https://docs.flowiseai.com/deployment/render)
+
+[![Deploy to Render](https://render.com/images/deploy-to-render-button.svg)](https://docs.flowiseai.com/deployment/render)
+
+### [AWS](https://docs.flowiseai.com/deployment/aws)
+
+### [Azure](https://docs.flowiseai.com/deployment/azure)
+
+### [DigitalOcean](https://docs.flowiseai.com/deployment/digital-ocean)
+
+### [GCP](https://docs.flowiseai.com/deployment/gcp)
+
+## 💻 Cloud Hosted
 
 Coming Soon
 

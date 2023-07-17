@@ -1,5 +1,5 @@
 import { ICommonObject, INode, INodeData, INodeParams, PromptTemplate } from '../../../src/Interface'
-import { getBaseClasses, getInputVariables, returnJSONStr } from '../../../src/utils'
+import { getBaseClasses, getInputVariables } from '../../../src/utils'
 import { PromptTemplateInput } from 'langchain/prompts'
 
 class PromptTemplate_Prompts implements INode {
@@ -31,11 +31,7 @@ class PromptTemplate_Prompts implements INode {
             {
                 label: '用于格式化 Prompt(提示) 的值',
                 name: 'promptValues',
-                type: 'string',
-                rows: 4,
-                placeholder: `{
-                    "product": "香蕉",
-                }`,
+                type: 'json',
                 optional: true,
                 acceptVariable: true,
                 list: true
@@ -45,12 +41,11 @@ class PromptTemplate_Prompts implements INode {
 
     async init(nodeData: INodeData): Promise<any> {
         const template = nodeData.inputs?.template as string
-        let promptValuesStr = nodeData.inputs?.promptValues as string
+        const promptValuesStr = nodeData.inputs?.promptValues as string
 
         let promptValues: ICommonObject = {}
         if (promptValuesStr) {
-            promptValuesStr = promptValuesStr.replace(/\s/g, '')
-            promptValues = JSON.parse(returnJSONStr(promptValuesStr))
+            promptValues = JSON.parse(promptValuesStr.replace(/\s/g, ''))
         }
 
         const inputVariables = getInputVariables(template)

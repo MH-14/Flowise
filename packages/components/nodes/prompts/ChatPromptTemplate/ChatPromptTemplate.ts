@@ -38,12 +38,7 @@ class ChatPromptTemplate_Prompts implements INode {
             {
                 label: '用于格式化 Prompt(提示) 的值',
                 name: 'promptValues',
-                type: 'string',
-                rows: 4,
-                placeholder: `{
-                    "input_language": "English",
-                    "output_language": "French"
-                }`,
+                type: 'json',
                 optional: true,
                 acceptVariable: true,
                 list: true

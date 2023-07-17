@@ -1,12 +1,15 @@
 import { ICommonObject, IMessage, INode, INodeData, INodeParams } from '../../../src/Interface'
 import { ConversationChain } from 'langchain/chains'
-import { CustomChainHandler, getBaseClasses } from '../../../src/utils'
+import { getBaseClasses } from '../../../src/utils'
 import { ChatPromptTemplate, HumanMessagePromptTemplate, MessagesPlaceholder, SystemMessagePromptTemplate } from 'langchain/prompts'
 import { BufferMemory, ChatMessageHistory } from 'langchain/memory'
 import { BaseChatModel } from 'langchain/chat_models/base'
-import { AIChatMessage, HumanChatMessage } from 'langchain/schema'
+import { AIMessage, HumanMessage } from 'langchain/schema'
+import { ConsoleCallbackHandler, CustomChainHandler } from '../../../src/handler'
+import { flatten } from 'lodash'
+import { Document } from 'langchain/document'
 
-const systemMessage = `以下是一段友好的对话, 其中一方是人类, 另一方是AI. 这个AI非常健谈, 会提供很多具体的细节信息. 如果AI不知道某个问题的答案, 它会诚实地说出自己不知道.`
+let systemMessage = `以下是人与AI之间的友好对话。AI很健谈,会提供很多根据上下文猜测的具体细节。如果AI不知道问题的答案,它会诚实地说不知道。`
 
 class ConversationChain_Chains implements INode {
     label: string
@@ -38,6 +41,14 @@ class ConversationChain_Chains implements INode {
                 type: 'BaseMemory'
             },
             {
+                label: '文档',
+                name: 'document',
+                type: 'Document',
+                description: '将整个文档内容纳入上下文窗口',
+                optional: true,
+                list: true
+            },
+            {
                 label: '系统消息',
                 name: 'systemMessagePrompt',
                 type: 'string',
@@ -53,6 +64,20 @@ class ConversationChain_Chains implements INode {
         const model = nodeData.inputs?.model as BaseChatModel
         const memory = nodeData.inputs?.memory as BufferMemory
         const prompt = nodeData.inputs?.systemMessagePrompt as string
+        const docs = nodeData.inputs?.document as Document[]
+
+        const flattenDocs = docs && docs.length ? flatten(docs) : []
+        const finalDocs = []
+        for (let i = 0; i < flattenDocs.length; i += 1) {
+            finalDocs.push(new Document(flattenDocs[i]))
+        }
+
+        let finalText = ''
+        for (let i = 0; i < finalDocs.length; i += 1) {
+            finalText += finalDocs[i].pageContent
+        }
+
+        if (finalText) systemMessage = `${systemMessage}\nThe AI has the following context:\n${finalText}`
 
         const obj: any = {
             llm: model,
@@ -81,21 +106,23 @@ class ConversationChain_Chains implements INode {
 
             for (const message of histories) {
                 if (message.type === 'apiMessage') {
-                    chatHistory.push(new AIChatMessage(message.message))
+                    chatHistory.push(new AIMessage(message.message))
                 } else if (message.type === 'userMessage') {
-                    chatHistory.push(new HumanChatMessage(message.message))
+                    chatHistory.push(new HumanMessage(message.message))
                 }
             }
             memory.chatHistory = new ChatMessageHistory(chatHistory)
             chain.memory = memory
         }
 
+        const loggerHandler = new ConsoleCallbackHandler(options.logger)
+
         if (options.socketIO && options.socketIOClientId) {
             const handler = new CustomChainHandler(options.socketIO, options.socketIOClientId)
-            const res = await chain.call({ input }, [handler])
+            const res = await chain.call({ input }, [loggerHandler, handler])
             return res?.response
         } else {
-            const res = await chain.call({ input })
+            const res = await chain.call({ input }, [loggerHandler])
             return res?.response
         }
     }

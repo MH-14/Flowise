@@ -118,7 +118,8 @@ export const ChatMessage = ({ open, chatflowid, isDialog }) => {
 
         setLoading(true)
         setMessages((prevMessages) => [...prevMessages, { message: userInput, type: 'userMessage' }])
-        addChatMessage(userInput, 'userMessage')
+        // waiting for first chatmessage saved, the first chatmessage will be used in sendMessageAndGetPrediction
+        await addChatMessage(userInput, 'userMessage')
 
         // Send user question and history to API
         try {
@@ -162,7 +163,9 @@ export const ChatMessage = ({ open, chatflowid, isDialog }) => {
 
     // Prevent blank submissions and allow for multiline input
     const handleEnter = (e) => {
-        if (e.key === 'Enter' && userInput) {
+        // Check if IME composition is in progress
+        const isIMEComposition = e.isComposing || e.keyCode === 229
+        if (e.key === 'Enter' && userInput && !isIMEComposition) {
             if (!e.shiftKey && userInput) {
                 handleSubmit(e)
             }
@@ -365,6 +368,7 @@ export const ChatMessage = ({ open, chatflowid, isDialog }) => {
                             value={userInput}
                             onChange={onChange}
                             multiline={true}
+                            maxRows={isDialog ? 7 : 2}
                             endAdornment={
                                 <InputAdornment position='end' sx={{ padding: '15px' }}>
                                     <IconButton type='submit' disabled={loading || !chatflowid} edge='end'>

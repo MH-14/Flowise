@@ -2,7 +2,18 @@
  * Types
  */
 
-export type NodeParamsType = 'options' | 'string' | 'number' | 'boolean' | 'password' | 'json' | 'code' | 'date' | 'file' | 'folder'
+export type NodeParamsType =
+    | 'asyncOptions'
+    | 'options'
+    | 'string'
+    | 'number'
+    | 'boolean'
+    | 'password'
+    | 'json'
+    | 'code'
+    | 'date'
+    | 'file'
+    | 'folder'
 
 export type CommonType = string | number | boolean | undefined | null
 
@@ -14,6 +25,10 @@ export type MessageType = 'apiMessage' | 'userMessage'
 
 export interface ICommonObject {
     [key: string]: any | CommonType | ICommonObject | CommonType[] | ICommonObject[]
+}
+
+export type IDatabaseEntity = {
+    [key: string]: any
 }
 
 export interface IAttachment {
@@ -42,6 +57,7 @@ export interface INodeParams {
     type: NodeParamsType | string
     default?: CommonType | ICommonObject | ICommonObject[]
     description?: string
+    warning?: string
     options?: Array<INodeOptionsValue>
     optional?: boolean | INodeDisplay
     rows?: number
@@ -50,6 +66,7 @@ export interface INodeParams {
     placeholder?: string
     fileType?: string
     additionalParams?: boolean
+    loadMethod?: string
 }
 
 export interface INodeExecutionData {
@@ -74,6 +91,9 @@ export interface INodeProperties {
 export interface INode extends INodeProperties {
     inputs?: INodeParams[]
     output?: INodeOutputsValue[]
+    loadMethods?: {
+        [key: string]: (nodeData: INodeData, options?: ICommonObject) => Promise<INodeOptionsValue[]>
+    }
     init?(nodeData: INodeData, input: string, options?: ICommonObject): Promise<any>
     run?(nodeData: INodeData, input: string, options?: ICommonObject): Promise<string | ICommonObject>
 }
@@ -83,6 +103,7 @@ export interface INodeData extends INodeProperties {
     inputs?: ICommonObject
     outputs?: ICommonObject
     instance?: any
+    loadMethod?: string // method to load async options
 }
 
 export interface IMessage {

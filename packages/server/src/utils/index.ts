@@ -1,6 +1,7 @@
 import path from 'path'
 import fs from 'fs'
 import moment from 'moment'
+import logger from './logger'
 import {
     IComponentNodes,
     IDepthQueue,
@@ -15,10 +16,15 @@ import {
     IOverrideConfig
 } from '../Interface'
 import { cloneDeep, get, omit, merge } from 'lodash'
-import { ICommonObject, getInputVariables } from 'flowise-components'
+import { ICommonObject, getInputVariables, IDatabaseEntity } from 'flowise-components'
 import { scryptSync, randomBytes, timingSafeEqual } from 'crypto'
+import { ChatFlow } from '../entity/ChatFlow'
+import { ChatMessage } from '../entity/ChatMessage'
+import { Tool } from '../entity/Tool'
+import { DataSource } from 'typeorm'
 
 const QUESTION_VAR_PREFIX = 'question'
+export const databaseEntities: IDatabaseEntity = { ChatFlow: ChatFlow, ChatMessage: ChatMessage, Tool: Tool }
 
 /**
  * Returns the home folder path of the user if
@@ -174,6 +180,9 @@ export const getEndingNode = (nodeDependencies: INodeDependencies, graph: INodeD
  * @param {IDepthQueue} depthQueue
  * @param {IComponentNodes} componentNodes
  * @param {string} question
+ * @param {string} chatId
+ * @param {DataSource} appDataSource
+ * @param {ICommonObject} overrideConfig
  */
 export const buildLangchain = async (
     startingNodeIds: string[],
@@ -182,6 +191,8 @@ export const buildLangchain = async (
     depthQueue: IDepthQueue,
     componentNodes: IComponentNodes,
     question: string,
+    chatId: string,
+    appDataSource: DataSource,
     overrideConfig?: ICommonObject
 ) => {
     const flowNodes = cloneDeep(reactFlowNodes)
@@ -214,9 +225,16 @@ export const buildLangchain = async (
             if (overrideConfig) flowNodeData = replaceInputsWithConfig(flowNodeData, overrideConfig)
             const reactFlowNodeData: INodeData = resolveVariables(flowNodeData, flowNodes, question)
 
-            flowNodes[nodeIndex].data.instance = await newNodeInstance.init(reactFlowNodeData, question)
+            logger.debug(`[server]: Initializing ${reactFlowNode.data.label} (${reactFlowNode.data.id})`)
+            flowNodes[nodeIndex].data.instance = await newNodeInstance.init(reactFlowNodeData, question, {
+                chatId,
+                appDataSource,
+                databaseEntities,
+                logger
+            })
+            logger.debug(`[server]: Finished initializing ${reactFlowNode.data.label} (${reactFlowNode.data.id})`)
         } catch (e: any) {
-            console.error(e)
+            logger.error(e)
             throw new Error(e)
         }
 
@@ -452,7 +470,7 @@ export const isSameOverrideConfig = (
  * @returns {string}
  */
 export const getAPIKeyPath = (): string => {
-    return path.join(__dirname, '..', '..', 'api.json')
+    return process.env.APIKEY_PATH ? path.join(process.env.APIKEY_PATH, 'api.json') : path.join(__dirname, '..', '..', 'api.json')
 }
 
 /**
@@ -537,6 +555,18 @@ export const addAPIKey = async (keyName: string): Promise<ICommonObject[]> => {
 }
 
 /**
+ * Get API Key details
+ * @param {string} apiKey
+ * @returns {Promise<ICommonObject[]>}
+ */
+export const getApiKey = async (apiKey: string) => {
+    const existingAPIKeys = await getAPIKeys()
+    const keyIndex = existingAPIKeys.findIndex((key) => key.apiKey === apiKey)
+    if (keyIndex < 0) return undefined
+    return existingAPIKeys[keyIndex]
+}
+
+/**
  * Update existing API key
  * @param {string} keyIdToUpdate
  * @param {string} newKeyName
@@ -572,7 +602,7 @@ export const replaceAllAPIKeys = async (content: ICommonObject[]): Promise<void>
     try {
         await fs.promises.writeFile(getAPIKeyPath(), JSON.stringify(content), 'utf8')
     } catch (error) {
-        console.error(error)
+        logger.error(error)
     }
 }
 
@@ -609,21 +639,32 @@ export const findAvailableConfigs = (reactFlowNodes: IReactFlowNode[]) => {
     for (const flowNode of reactFlowNodes) {
         for (const inputParam of flowNode.data.inputParams) {
             let obj: IOverrideConfig
-            if (inputParam.type === 'password' || inputParam.type === 'options') {
-                continue
-            } else if (inputParam.type === 'file') {
+            if (inputParam.type === 'file') {
                 obj = {
                     node: flowNode.data.label,
                     label: inputParam.label,
                     name: 'files',
                     type: inputParam.fileType ?? inputParam.type
                 }
+            } else if (inputParam.type === 'options') {
+                obj = {
+                    node: flowNode.data.label,
+                    label: inputParam.label,
+                    name: inputParam.name,
+                    type: inputParam.options
+                        ? inputParam.options
+                              ?.map((option) => {
+                                  return option.name
+                              })
+                              .join(', ')
+                        : 'string'
+                }
             } else {
                 obj = {
                     node: flowNode.data.label,
                     label: inputParam.label,
                     name: inputParam.name,
-                    type: inputParam.type
+                    type: inputParam.type === 'password' ? 'string' : inputParam.type
                 }
             }
             if (!configs.some((config) => JSON.stringify(config) === JSON.stringify(obj))) {
@@ -657,5 +698,16 @@ export const isFlowValidForStream = (reactFlowNodes: IReactFlowNode[], endingNod
         }
     }
 
-    return isChatOrLLMsExist && endingNodeData.category === 'Chains' && !isVectorStoreFaiss(endingNodeData)
+    let isValidChainOrAgent = false
+    if (endingNodeData.category === 'Chains') {
+        // Chains that are not available to stream
+        const blacklistChains = ['openApiChain']
+        isValidChainOrAgent = !blacklistChains.includes(endingNodeData.name)
+    } else if (endingNodeData.category === 'Agents') {
+        // Agent that are available to stream
+        const whitelistAgents = ['openAIFunctionAgent']
+        isValidChainOrAgent = whitelistAgents.includes(endingNodeData.name)
+    }
+
+    return isChatOrLLMsExist && isValidChainOrAgent && !isVectorStoreFaiss(endingNodeData) && process.env.EXECUTION_MODE !== 'child'
 }
