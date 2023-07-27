@@ -1,31 +1,20 @@
 import { BaseLanguageModel } from 'langchain/base_language'
 import { ICommonObject, IMessage, INode, INodeData, INodeParams } from '../../../src/Interface'
 import { getBaseClasses } from '../../../src/utils'
-import { ConversationalRetrievalQAChain } from 'langchain/chains'
+import { ConversationalRetrievalQAChain, QAChainParams } from 'langchain/chains'
 import { AIMessage, BaseRetriever, HumanMessage } from 'langchain/schema'
-import { BaseChatMemory, BufferMemory, ChatMessageHistory } from 'langchain/memory'
+import { BaseChatMemory, BufferMemory, ChatMessageHistory, BufferMemoryInput } from 'langchain/memory'
 import { PromptTemplate } from 'langchain/prompts'
 import { ConsoleCallbackHandler, CustomChainHandler } from '../../../src/handler'
-
-const default_qa_template = `使用以下语句段落作为上下文,用原文语言回答后面的问题。如果你不知道答案,请用原文语言说你不知道,不要编造答案。
-
-{context}
-
-问题: {question}
-有用的答案:`
-
-const qa_template = `使用以下上下文来回答结尾的问题,请用原文的语言回答。
-
-{context}
-
-问题: {question}
-有用的答案:`
-
-const CUSTOM_QUESTION_GENERATOR_CHAIN_PROMPT = `给出以下对话和后续问题,请将后续问题重新表述为一个独立的问题,使用原文的语言。并在独立问题中包括后续问题的内容。
-
-聊天历史:{chat_history}
-后续问题:{question}
-独立问题:`
+import {
+    default_map_reduce_template,
+    default_qa_template,
+    qa_template,
+    map_reduce_template,
+    CUSTOM_QUESTION_GENERATOR_CHAIN_PROMPT,
+    refine_question_template,
+    refine_template
+} from './prompts'
 
 class ConversationalRetrievalQAChain_Chains implements INode {
     label: string
@@ -59,9 +48,9 @@ class ConversationalRetrievalQAChain_Chains implements INode {
             {
                 label: 'Memory',
                 name: 'memory',
-                type: 'DynamoDBChatMemory | RedisBackedChatMemory | ZepMemory',
+                type: 'BaseMemory',
                 optional: true,
-                description: 'If no memory connected, default BufferMemory will be used'
+                description: 'If left empty, a default BufferMemory will be used'
             },
             {
                 label: 'Return Source Documents',
@@ -117,28 +106,54 @@ class ConversationalRetrievalQAChain_Chains implements INode {
 
         const obj: any = {
             verbose: process.env.DEBUG === 'true' ? true : false,
-            qaChainOptions: {
-                type: 'stuff',
-                prompt: PromptTemplate.fromTemplate(systemMessagePrompt ? `${systemMessagePrompt}\n${qa_template}` : default_qa_template)
-            },
             questionGeneratorChainOptions: {
                 template: CUSTOM_QUESTION_GENERATOR_CHAIN_PROMPT
             }
         }
         if (returnSourceDocuments) obj.returnSourceDocuments = returnSourceDocuments
-        if (chainOption) obj.qaChainOptions = { ...obj.qaChainOptions, type: chainOption }
+        if (chainOption === 'map_reduce') {
+            obj.qaChainOptions = {
+                type: 'map_reduce',
+                combinePrompt: PromptTemplate.fromTemplate(
+                    systemMessagePrompt ? `${systemMessagePrompt}\n${map_reduce_template}` : default_map_reduce_template
+                )
+            } as QAChainParams
+        } else if (chainOption === 'refine') {
+            const qprompt = new PromptTemplate({
+                inputVariables: ['context', 'question'],
+                template: refine_question_template(systemMessagePrompt)
+            })
+            const rprompt = new PromptTemplate({
+                inputVariables: ['context', 'question', 'existing_answer'],
+                template: refine_template
+            })
+            obj.qaChainOptions = {
+                type: 'refine',
+                questionPrompt: qprompt,
+                refinePrompt: rprompt
+            } as QAChainParams
+        } else {
+            obj.qaChainOptions = {
+                type: 'stuff',
+                prompt: PromptTemplate.fromTemplate(systemMessagePrompt ? `${systemMessagePrompt}\n${qa_template}` : default_qa_template)
+            } as QAChainParams
+        }
+
         if (memory) {
             memory.inputKey = 'question'
-            memory.outputKey = 'text'
             memory.memoryKey = 'chat_history'
+            if (chainOption === 'refine') memory.outputKey = 'output_text'
+            else memory.outputKey = 'text'
             obj.memory = memory
         } else {
-            obj.memory = new BufferMemory({
+            const fields: BufferMemoryInput = {
                 memoryKey: 'chat_history',
                 inputKey: 'question',
-                outputKey: 'text',
                 returnMessages: true
-            })
+            }
+            if (chainOption === 'refine') fields.outputKey = 'output_text'
+            else fields.outputKey = 'text'
+            obj.memory = new BufferMemory(fields)
         }
 
         const chain = ConversationalRetrievalQAChain.fromLLM(model, vectorStoreRetriever, obj)
@@ -149,6 +164,7 @@ class ConversationalRetrievalQAChain_Chains implements INode {
         const chain = nodeData.instance as ConversationalRetrievalQAChain
         const returnSourceDocuments = nodeData.inputs?.returnSourceDocuments as boolean
         const memory = nodeData.inputs?.memory
+        const chainOption = nodeData.inputs?.chainOption as string
 
         let model = nodeData.inputs?.model
 
@@ -178,8 +194,22 @@ class ConversationalRetrievalQAChain_Chains implements INode {
         const loggerHandler = new ConsoleCallbackHandler(options.logger)
 
         if (options.socketIO && options.socketIOClientId) {
-            const handler = new CustomChainHandler(options.socketIO, options.socketIOClientId, undefined, returnSourceDocuments)
+            const handler = new CustomChainHandler(
+                options.socketIO,
+                options.socketIOClientId,
+                chainOption === 'refine' ? 4 : undefined,
+                returnSourceDocuments
+            )
             const res = await chain.call(obj, [loggerHandler, handler])
+            if (chainOption === 'refine') {
+                if (res.output_text && res.sourceDocuments) {
+                    return {
+                        text: res.output_text,
+                        sourceDocuments: res.sourceDocuments
+                    }
+                }
+                return res?.output_text
+            }
             if (res.text && res.sourceDocuments) return res
             return res?.text
         } else {
