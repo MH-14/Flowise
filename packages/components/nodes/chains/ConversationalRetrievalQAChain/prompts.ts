@@ -1,64 +1,66 @@
-export const default_qa_template = `Use the following pieces of context to answer the question at the end. If you don't know the answer, just say that you don't know, don't try to make up an answer.
+export const default_qa_template = `使用下面的上下文来回答最后的问题。如果你不知道答案,就直接说你不知道,不要编造答案。 
 
 {context}
 
-Question: {question}
-Helpful Answer:`
+问题:{question}  
+有用的答案:`
 
-export const qa_template = `Use the following pieces of context to answer the question at the end.
+export const qa_template = `使用下面的上下文来回答最后的问题。
 
 {context}
 
-Question: {question}
-Helpful Answer:`
+问题:{question}
+有用的答案:`
 
-export const default_map_reduce_template = `Given the following extracted parts of a long document and a question, create a final answer. 
-If you don't know the answer, just say that you don't know. Don't try to make up an answer.
+export const default_map_reduce_template = `给定下面这篇长文档的摘要片段和一个问题,构造一个最终的答案。
+如果你不知道答案,就直接说你不知道,不要编造答案。
+
+{summaries} 
+
+问题:{question}
+有用的答案:`
+
+export const map_reduce_template = `给定下面这篇长文档的摘要片段和一个问题,构造一个最终的答案。
 
 {summaries}
 
-Question: {question}
-Helpful Answer:`
-
-export const map_reduce_template = `Given the following extracted parts of a long document and a question, create a final answer. 
-
-{summaries}
-
-Question: {question}
-Helpful Answer:`
+问题:{question} 
+有用的答案:`
 
 export const refine_question_template = (sysPrompt?: string) => {
     let returnPrompt = ''
-    if (sysPrompt)
-        returnPrompt = `Context information is below. 
----------------------
-{context}
----------------------
-Given the context information and not prior knowledge, ${sysPrompt}
-Answer the question: {question}.
-Answer:`
-    if (!sysPrompt)
-        returnPrompt = `Context information is below. 
----------------------
-{context}
----------------------
-Given the context information and not prior knowledge, answer the question: {question}.
-Answer:`
+    if (sysPrompt) {
+        returnPrompt = `下面是上下文信息。  
+    ---------------------
+    {context}
+    ---------------------
+    根据上下文信息而不是之前的知识,${sysPrompt}
+    回答问题:{question}。
+    答案:`
+    }
+    if (!sysPrompt) {
+        returnPrompt = `下面是上下文信息。
+    ---------------------
+    {context}
+    ---------------------
+    根据上下文信息而不是之前的知识,回答问题:{question}。
+    答案:`
+    }
     return returnPrompt
 }
 
-export const refine_template = `The original question is as follows: {question}
-We have provided an existing answer: {existing_answer}
-We have the opportunity to refine the existing answer (only if needed) with some more context below.
+export const refine_template = `原始问题如下:{question}  
+我们已经提供了一个现有的答案:{existing_answer}
+我们有机会用下面的更多上下文来完善现有的答案(如果需要的话)。
 ------------
 {context}
-------------
-Given the new context, refine the original answer to better answer the question. 
-If you can't find answer from the context, return the original answer.`
+------------  
+根据新的上下文,改进原始答案,更好地回答该问题。
+如果你从上下文中找不到答案,返回原始答案。`
 
-export const CUSTOM_QUESTION_GENERATOR_CHAIN_PROMPT = `Given the following conversation and a follow up question, rephrase the follow up question to be a standalone question, answer in the same language as the follow up question. include it in the standalone question.
+export const CUSTOM_QUESTION_GENERATOR_CHAIN_PROMPT = `给定下面的对话和一个后续问题,将后续问题重新措辞成一个独立的问题,使用后续问题的语言回答。将后续问题内容包括在独立问题中。
 
-Chat History:
+聊天历史: 
 {chat_history}
-Follow Up Input: {question}
-Standalone question:`
+后续问题:{question}
+独立问题:`
